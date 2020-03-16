@@ -14,7 +14,7 @@ function showLoader() {
 
 // Asynchronous function for receiving Stock Data
 async function getStockTicker(x) {
-    let ticker = await fetch('https://financialmodelingprep.com/api/v3/search?query=' + x + '&limit=10&exchange=NASDAQ');
+    let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${x}&limit=10&exchange=NASDAQ`);
     let data = await ticker.json()
     data.forEach(function (object) {
         let resultChild = document.createElement('div');
