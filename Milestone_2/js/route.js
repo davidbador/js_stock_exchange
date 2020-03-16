@@ -46,10 +46,35 @@ async function getStockPriceHistory() {
     let symbol = urlParams.get('symbol');
     let history = await fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?serietype=line`);
     let data = await history.json();
-    let ctx = stockGraphParent.getContext("2d");
-    new Chart(ctx, {
+    let dataDates = [];
+    let dataCloses = [];
+    data.historical.forEach(function (object) {
+        dataDates.push(object.date);
+        dataCloses.push(object.close);
+    })
+    let val = 18;
+    let divider = Math.floor(dataDates.length / val);
+    let chosenDataDates = [];
+    let chosenDataCloses = [];
+    for (let i = 0; i < dataDates.length; i = i + divider) {
+        chosenDataDates.push(dataDates[i]);
+    }
+    for (let i = 0; i < dataCloses.length; i = i + divider) {
+        chosenDataCloses.push(dataCloses[i]);
+    }
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
         type: 'line',
-        data: data,
+        data: {
+            labels: chosenDataDates,
+            datasets: [{
+                label: 'Stock Price History',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: chosenDataCloses
+            }]
+        },
+        options: {}
     });
 }
 
