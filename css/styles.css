@@ -10,13 +10,45 @@
 }
 
 /* Search Results Styling */
+.title {
+    font-size: 72px;
+    font-weight: 500;
+}
+
 .resultChildStyle {
     margin-top: 10px;
     padding-bottom: 10px;
+}
+
+.resultChildStyle > a {
     font-size: 20px;
+}
+
+.stockSymbolStyle {
+    margin-left: 2%;
+    font-size: 14px;
+    color: grey;
+}
+
+.stockPriceStyle {
+    font-size: 14px;
 }
 
 #searchResults > div:not(:last-child) {
     border-bottom: 1px solid gainsboro;
     width: 82%;
+}
+
+.imageSize {
+    height: 50px;
+    width: auto;
+    margin-right: 2%;
+}
+
+.minus {
+    color: red;
+}
+
+.plus {
+    color: lightgreen;
 }

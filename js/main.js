@@ -15,23 +15,42 @@ showLoader = () => {
 // Asynchronous function for receiving Stock Data
 createCompanyNames = async (x) => {
     let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${x}&limit=10&exchange=NASDAQ`);
-    let data = await ticker.json()
-    data.forEach(function (object) {
-        appendStockElement(object)
-    });
+    let data = await ticker.json();
+    for (let i = 0; i < data.length; i++) {
+        let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol}`);
+        let newData = await info.json();
+        appendStockElement(data[i], newData.profile);
+    };
     loader.classList.replace('show', 'hide');
 }
 
-appendStockElement = (stock) => { 
+appendStockElement = (stock, stockInfo) => {
     let resultChild = document.createElement('div');
     resultParent.appendChild(resultChild);
-    resultChild.className = 'resultChildStyle'
-    resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'>${stock.name} (${stock.symbol})</a>`;
+    resultChild.className = 'resultChildStyle';
+    let stockImage = document.createElement('img');
+    stockImage.className = 'imageSize';
+    stockImage.src = `${stockInfo.image}`;
+    resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'>${stock.name}</a>`;
+    resultChild.prepend(stockImage);
+    let stockSymbol = document.createElement('span');
+    stockSymbol.innerHTML = `(${stock.symbol})`;
+    stockSymbol.className = 'stockSymbolStyle';
+    resultChild.appendChild(stockSymbol);
+    let stockPriceMovementChild = document.createElement('span');
+    stockPriceMovementChild.classList.add('stockPriceStyle');
+    stockPriceMovementChild.innerHTML = `${stockInfo.changesPercentage}`;
+    resultChild.appendChild(stockPriceMovementChild);
+    if (stockPriceMovementChild.innerText.includes('-')) {
+        stockPriceMovementChild.classList.add('minus');
+    } else if (stockPriceMovementChild.innerText.includes('+')) {
+        stockPriceMovementChild.classList.add('plus');
+    }
 }
 
 // Function to call the Loader and Stock Search Results
 inputSearch = () => {
-    showLoader()
+    showLoader();
     createCompanyNames(queryInput.value);
 }
 
