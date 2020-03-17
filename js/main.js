@@ -20,7 +20,7 @@ async function getStockTicker(x) {
         let resultChild = document.createElement('div');
         resultParent.appendChild(resultChild);
         resultChild.className = 'resultChildStyle'
-        resultChild.innerHTML = `<a href='/company.html?symbol=${object.symbol}'>${object.name} (${object.symbol})</a>`;
+        resultChild.innerHTML = `<a href='company.html?symbol=${object.symbol}'>${object.name} (${object.symbol})</a>`;
     });
     loader.classList.replace('show', 'hide');
 }

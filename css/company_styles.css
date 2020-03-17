@@ -1,0 +1,41 @@
+span > a {
+    font-size: 24px;
+    margin-left: 50px;
+}
+
+#stockPrice {
+    margin-top: 3%;
+}
+
+.stockPrice {
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.stockPriceMovement {
+    margin-left: 1%;
+}
+
+.minus {
+    color: red;
+}
+
+.plus {
+    color: lightgreen;
+}
+
+#stockDescription {
+    margin-top: 3%;
+    width: 36%;
+    font-size: 18px;
+}
+
+#loader.show {
+    visibility: visible;
+    height: 100px;
+    width: 100px;
+}
+
+#loader.hide {
+    display: none;
+}
