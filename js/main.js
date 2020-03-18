@@ -1,4 +1,5 @@
 // Global Variables
+let marqueeMovement = document.getElementById('marqueeMovement');
 let queryInput = document.getElementById('queryInput');
 let searchButton = document.getElementById('searchButton');
 let resultParent = document.getElementById('searchResults');
@@ -10,6 +11,24 @@ loader.classList.add('hide');
 // Function to show Loader before results are displayed
 showLoader = () => {
     loader.classList.replace('hide', 'show');
+}
+
+//Asynchronous function for receiving Stock Data for Marquee
+createCompanyMarquee = async () => {
+    let info = await fetch(`https://financialmodelingprep.com/api/v3/company/stock/list`);
+    let data = await info.json();
+    data.symbolsList.forEach((option) => {
+        let marqueeChild = document.createElement('div');
+        let marqueeChildPrice = document.createElement('span');
+        marqueeChild.className = 'marqueeChild';
+        marqueeChild.innerHTML = `${option.symbol} `;
+        marqueeChildPrice.className = 'plus';
+        marqueeChildPrice.innerHTML = `$${option.price}`;
+        if (option.exchange === 'Nasdaq Global Select') {
+            marqueeMovement.appendChild(marqueeChild);
+            marqueeChild.appendChild(marqueeChildPrice);
+        }
+    })
 }
 
 // Asynchronous function for receiving Stock Data
@@ -65,5 +84,6 @@ createCompanyNamesRefresh = () => {
 }
 
 // Event Listeners
+window.addEventListener('load', createCompanyMarquee);
 searchButton.addEventListener('click', inputSearch);
 searchButton.addEventListener('click', createCompanyNamesRefresh);

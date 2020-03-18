@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Milestone 3</title>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="https://financialmodellingprep.com/favicon.ico">
     <link rel="stylesheet" href="css/styles.css" />
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -12,10 +13,21 @@
 
 <body>
     <div class="container-fluid">
-        
+
+        <!-- Nasdaq Stocks Marquee -->
+        <div id="marquee" class="marquee">
+            <div id="marqueeWrapper" class="marqueeWrapper">
+                <div id="marqueeMovement" class="marqueeMovement">
+
+                </div>
+            </div>
+        </div>
+
         <!-- Search Nasdaq Stocks Title -->
-        <div class="text-center title">Search Nasdaq Stocks</div>
-        
+        <div class="text-center title">
+            Search Nasdaq Stocks
+        </div>
+
         <!-- Search Bar and Search Button Row -->
         <div class="offset-1">
             <input id="queryInput" type="text" value="" class="w-75">
