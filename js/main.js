@@ -13,28 +13,10 @@ showLoader = () => {
     loader.classList.replace('hide', 'show');
 }
 
-//Asynchronous function for receiving Stock Data for Marquee
-createCompanyMarquee = async () => {
-    let info = await fetch(`https://financialmodelingprep.com/api/v3/company/stock/list`);
-    let data = await info.json();
-    data.symbolsList.forEach((option) => {
-        appendStockFeatures(option);
-    })
-}
-
-// Function for appending stock elements to the marquee
-appendStockFeatures = (stock) => {
-    let marqueeChild = document.createElement('div');
-    let marqueeChildPrice = document.createElement('span');
-    marqueeChild.className = 'marqueeChild';
-    marqueeChild.innerHTML = `${stock.symbol} `;
-    marqueeChildPrice.className = 'plus';
-    marqueeChildPrice.innerHTML = `$${stock.price}`;
-    if (stock.exchange === 'Nasdaq Global Select') {
-        marqueeMovement.appendChild(marqueeChild);
-        marqueeChild.appendChild(marqueeChildPrice);
-    }
-}
+(async function () {
+    const marquee = new Marquee(marqueeMovement);
+    marquee.load();
+})()
 
 // Asynchronous function for receiving Stock Data
 createCompanyNames = async (x) => {
@@ -89,6 +71,5 @@ createCompanyNamesRefresh = () => {
 }
 
 // Event Listeners
-window.addEventListener('load', createCompanyMarquee);
 searchButton.addEventListener('click', inputSearch);
 searchButton.addEventListener('click', createCompanyNamesRefresh);
