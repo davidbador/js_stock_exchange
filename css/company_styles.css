@@ -26,8 +26,12 @@ span > a {
 
 #stockDescription {
     margin-top: 3%;
-    width: 36%;
+    max-width: 36%;
     font-size: 18px;
+}
+
+#myGraph {
+    max-width: 100%;
 }
 
 #loader.show {
