@@ -16,14 +16,15 @@ showLoader = () => {
 createCompanyNames = async (x) => {
     let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${x}&limit=10&exchange=NASDAQ`);
     let data = await ticker.json();
-    for (let i = 0; i < data.length; i++) {
-        let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol}`);
+    data.forEach(async (option) => {
+        let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option.symbol}`);
         let newData = await info.json();
-        appendStockElement(data[i], newData.profile);
-    };
+        appendStockElement(option, newData.profile);
+    });
     loader.classList.replace('show', 'hide');
 }
 
+// Function for appending the stock elements to the document
 appendStockElement = (stock, stockInfo) => {
     let resultChild = document.createElement('div');
     resultParent.appendChild(resultChild);

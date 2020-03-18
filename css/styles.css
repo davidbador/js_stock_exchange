@@ -1,3 +1,9 @@
+/* Search Bar Styling */
+.title {
+    font-size: 72px;
+    font-weight: 500;
+}
+
 /* Loader Styling */
 #loader.show {
     visibility: visible;
@@ -10,11 +16,6 @@
 }
 
 /* Search Results Styling */
-.title {
-    font-size: 72px;
-    font-weight: 500;
-}
-
 .resultChildStyle {
     margin-top: 10px;
     padding-bottom: 10px;
