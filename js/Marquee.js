@@ -22,5 +22,3 @@ class Marquee {
         }
     }
 }
-
-Marquee.load
