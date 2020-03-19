@@ -13,27 +13,10 @@
 
 <body>
     <div class="container-fluid">
-
-        <div id="loader" class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-
-        <div id="stockTitle">
-
-        </div>
-
-        <div id="stockPrice">
-
-        </div>
-
-        <div id="stockDescription">
-
-        </div>
-
-        <div id="stockGraph">
-            <canvas id="myChart">
-
-            </canvas>
+        <div id="stockInformation">
+            <div id="loader" class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -46,6 +29,8 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="js/StockInformation.js"></script>
+    <script src="js/StockGraph.js"></script>
     <script src="js/route.js"></script>
 </body>
 
