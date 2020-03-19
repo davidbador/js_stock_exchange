@@ -1,6 +1,5 @@
 // Global Variables
-let marqueeParent = document.getElementById('marquee');
-let searchBar = document.getElementById('searchBar');
+let marqueeMovement = document.getElementById('marqueeMovement');
 let queryInput = document.getElementById('queryInput');
 let searchButton = document.getElementById('searchButton');
 let resultParent = document.getElementById('searchResults');
@@ -14,16 +13,70 @@ showLoader = () => {
     loader.classList.replace('hide', 'show');
 }
 
-(async function () {
-    const marquee = new Marquee(marqueeParent);
-    marquee.load();
-})()
+//Asynchronous function for receiving Stock Data for Marquee
+createCompanyMarquee = async () => {
+    let info = await fetch(`https://financialmodelingprep.com/api/v3/company/stock/list`);
+    let data = await info.json();
+    data.symbolsList.forEach((option) => {
+        appendStockFeatures(option);
+    })
+}
+
+// Function for appending stock elements to the marquee
+appendStockFeatures = (stock) => {
+    let marqueeChild = document.createElement('div');
+    let marqueeChildPrice = document.createElement('span');
+    marqueeChild.className = 'marqueeChild';
+    marqueeChild.innerHTML = `${stock.symbol} `;
+    marqueeChildPrice.className = 'plus';
+    marqueeChildPrice.innerHTML = `$${stock.price}`;
+    if (stock.exchange === 'Nasdaq Global Select' || stock.exchange === 'NASDAQ Capital Market' || stock.exchange === 'NASDAQ Global Market' || stock.exchange === 'Nasdaq' || stock.exchange === 'NasdaqCM' || stock.exchange === 'NasdaqGM' || stock.exchange === 'NasdaqGS') {
+        marqueeMovement.appendChild(marqueeChild);
+        marqueeChild.appendChild(marqueeChildPrice);
+    }
+}
+
+// Asynchronous function for receiving Stock Data
+createCompanyNames = async (x) => {
+    let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${x}&limit=10&exchange=NASDAQ`);
+    let data = await ticker.json();
+    data.forEach(async (option) => {
+        let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option.symbol}`);
+        let newData = await info.json();
+        appendStockElement(option, newData.profile);
+    });
+    loader.classList.replace('show', 'hide');
+}
+
+// Function for appending the stock elements to the document
+appendStockElement = (stock, stockInfo) => {
+    let resultChild = document.createElement('div');
+    resultParent.appendChild(resultChild);
+    resultChild.className = 'resultChildStyle';
+    let stockImage = document.createElement('img');
+    stockImage.className = 'imageSize';
+    stockImage.src = `${stockInfo.image}`;
+    resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'>${stock.name}</a>`;
+    resultChild.prepend(stockImage);
+    let stockSymbol = document.createElement('span');
+    stockSymbol.innerHTML = `(${stock.symbol})`;
+    stockSymbol.className = 'stockSymbolStyle';
+    resultChild.appendChild(stockSymbol);
+    let stockPriceMovementChild = document.createElement('span');
+    stockPriceMovementChild.classList.add('stockPriceStyle');
+    stockPriceMovementChild.innerHTML = `${stockInfo.changesPercentage}`;
+    resultChild.appendChild(stockPriceMovementChild);
+    if (stockPriceMovementChild.innerText.includes('-')) {
+        stockPriceMovementChild.classList.add('minus');
+    } else if (stockPriceMovementChild.innerText.includes('+')) {
+        stockPriceMovementChild.classList.add('plus');
+    }
+}
 
 // Function to call the Loader and Stock Search Results
 inputSearch = () => {
     showLoader();
-    const form = new SearchForm(searchBar);
-    form.onSearch(queryInput.value);
+    createCompanyNames(queryInput.value);
 }
 
 // Function to refresh Search Results with the New Input
@@ -36,5 +89,6 @@ createCompanyNamesRefresh = () => {
 }
 
 // Event Listeners
+window.addEventListener('load', createCompanyMarquee);
 searchButton.addEventListener('click', inputSearch);
 searchButton.addEventListener('click', createCompanyNamesRefresh);
