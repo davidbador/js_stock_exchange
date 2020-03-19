@@ -16,7 +16,7 @@
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-name: scroll;
-  animation-duration: 3000s;
+  animation-duration: 9000s;
 }
 
 .marqueeChild {
@@ -87,4 +87,8 @@
 
 .plus {
   color: lightgreen;
+}
+
+.yellow {
+  background-color: yellow;
 }

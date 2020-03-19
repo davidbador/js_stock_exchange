@@ -22,7 +22,7 @@ class Marquee {
         marqueeChild.innerHTML = `${stock.symbol} `;
         marqueeChildPrice.className = 'plus';
         marqueeChildPrice.innerHTML = `$${stock.price}`;
-        if (stock.exchange.includes('Nasdaq')) {
+        if (stock.exchange === 'Nasdaq Global Select' || stock.exchange === 'NASDAQ Capital Market' || stock.exchange === 'NASDAQ Global Market' || stock.exchange === 'Nasdaq' || stock.exchange === 'NasdaqCM' || stock.exchange === 'NasdaqGM' || stock.exchange === 'NasdaqGS') {
             marqueeMovement.appendChild(marqueeChild);
             marqueeChild.appendChild(marqueeChildPrice);
         }
