@@ -1,5 +1,5 @@
 // Global Variables
-let marqueeMovement = document.getElementById('marqueeMovement');
+let marqueeParent = document.getElementById('marquee');
 let searchBar = document.getElementById('searchBar');
 let queryInput = document.getElementById('queryInput');
 let searchButton = document.getElementById('searchButton');
@@ -15,7 +15,7 @@ showLoader = () => {
 }
 
 (async function () {
-    const marquee = new Marquee(marqueeMovement);
+    const marquee = new Marquee(marqueeParent);
     marquee.load();
 })()
 
