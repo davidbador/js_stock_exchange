@@ -79,6 +79,31 @@ inputSearch = () => {
     createCompanyNames(queryInput.value);
 }
 
+inputAutocomplete = () => {
+    if (re.test(queryInput.value) === true) {
+        createCompanyNames(queryInput.value);
+    }
+}
+
+debounce = (func, wait, immediate) => {
+    let timeout;
+    return function () {
+        let context = this, args = arguments;
+        let later = () => {
+            timeout = null;
+            if (!immediate) {
+                func.apply(context, args);
+            }
+        };
+        let callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) {
+            func.apply(context, args);
+        }
+    };
+};
+
 // Function to refresh Search Results with the New Input
 createCompanyNamesRefresh = () => {
     let child = resultParent.lastElementChild;
@@ -90,5 +115,9 @@ createCompanyNamesRefresh = () => {
 
 // Event Listeners
 window.addEventListener('load', createCompanyMarquee);
+queryInput.addEventListener('keyup', debounce(() => {
+    inputAutocomplete()
+}, 50));
+queryInput.addEventListener('keyup', createCompanyNamesRefresh);
 searchButton.addEventListener('click', inputSearch);
 searchButton.addEventListener('click', createCompanyNamesRefresh);
