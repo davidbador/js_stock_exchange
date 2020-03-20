@@ -16,6 +16,10 @@
 }
 
 /* Search Results Styling */
+.card {
+  height: 100vh;
+}
+
 .resultChildStyle {
     margin-top: 10px;
     padding-bottom: 10px;
