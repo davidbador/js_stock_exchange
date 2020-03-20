@@ -1,6 +1,4 @@
 // Global Variables
-let marqueeParent = document.getElementById('marquee');
-let searchBar = document.getElementById('searchBar');
 let queryInput = document.getElementById('queryInput');
 let searchButton = document.getElementById('searchButton');
 let resultParent = document.getElementById('searchResults');
@@ -14,16 +12,27 @@ showLoader = () => {
     loader.classList.replace('hide', 'show');
 }
 
-(async function () {
-    const marquee = new Marquee(marqueeParent);
-    marquee.load();
-})()
+// Asynchronous function for receiving Stock Data
+createCompanyNames = async (x) => {
+    let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${x}&limit=10&exchange=NASDAQ`);
+    let data = await ticker.json()
+    data.forEach(function (object) {
+        appendStockElement(object)
+    });
+    loader.classList.replace('show', 'hide');
+}
+
+appendStockElement = (stock) => { 
+    let resultChild = document.createElement('div');
+    resultParent.appendChild(resultChild);
+    resultChild.className = 'resultChildStyle'
+    resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'>${stock.name} (${stock.symbol})</a>`;
+}
 
 // Function to call the Loader and Stock Search Results
 inputSearch = () => {
-    showLoader();
-    const form = new SearchForm(searchBar);
-    form.onSearch(queryInput.value);
+    showLoader()
+    createCompanyNames(queryInput.value);
 }
 
 // Function to refresh Search Results with the New Input

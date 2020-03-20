@@ -1,94 +1,22 @@
-/* Marquee Styling */
-.marquee {
-  width: 100%;
-  overflow: hidden;
-}
-
-.marqueeWrapper {
-  width: 100%;
-  padding-left: 100%;
-}
-
-.marqueeMovement {
-  padding-right: 100%;
-  display: inline-block;
-  white-space: nowrap;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-name: scroll;
-  animation-duration: 9000s;
-}
-
-.marqueeChild {
-  display: inline-block;
-  padding: 0 12px;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-100%, 0);
-  }
-}
-
-/* Search Bar Styling */
-.title {
-  font-size: 72px;
-  font-weight: 500;
-}
-
 /* Loader Styling */
 #loader.show {
-  visibility: visible;
-  height: 100px;
-  width: 100px;
+    visibility: visible;
+    height: 100px;
+    width: 100px;
 }
 
 #loader.hide {
-  display: none;
+    display: none;
 }
 
 /* Search Results Styling */
 .resultChildStyle {
-  margin-top: 10px;
-  padding-bottom: 10px;
-}
-
-.resultChildStyle > a {
-  font-size: 20px;
-}
-
-.stockSymbolStyle {
-  margin-left: 2%;
-  font-size: 14px;
-  color: grey;
-}
-
-.stockPriceStyle {
-  font-size: 14px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
 }
 
 #searchResults > div:not(:last-child) {
-  border-bottom: 1px solid gainsboro;
-  width: 82%;
-}
-
-.imageSize {
-  height: 50px;
-  width: auto;
-  margin-right: 2%;
-}
-
-.minus {
-  color: red;
-}
-
-.plus {
-  color: lightgreen;
-}
-
-.yellow {
-  background-color: yellow;
+    border-bottom: 1px solid gainsboro;
+    width: 82%;
 }
