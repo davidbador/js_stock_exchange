@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milestone 6</title>
-    <link data-n-head="true" rel="icon" type="image/x-icon" href="https://financialmodellingprep.com/favicon.ico">
+    <title>Milestone 2.1 Geekout</title>
     <link rel="stylesheet" href="css/company_styles.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -13,9 +12,27 @@
 
 <body>
     <div class="container-fluid">
-        <div id="stockInformation" class="card shadow p-3 mb-5 bg-white rounded">
+        <div class='card shadow p-3 mb-5 bg-white rounded'>
             <div id="loader" class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
+            </div>
+
+            <div id="stockTitle">
+
+            </div>
+
+            <div id="stockPrice">
+
+            </div>
+
+            <div id="stockDescription">
+
+            </div>
+
+            <div id="stockGraph">
+                <canvas id="myChart">
+
+                </canvas>
             </div>
         </div>
     </div>
@@ -29,8 +46,6 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script src="js/StockInformation.js"></script>
-    <script src="js/StockGraph.js"></script>
     <script src="js/route.js"></script>
 </body>
 
