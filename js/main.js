@@ -15,6 +15,7 @@ showLoader = () => {
     loader.classList.replace('hide', 'show');
 }
 
+// Asynchronous function to load the Marquee on the window being loaded
 (async function () {
     const marquee = new Marquee(marqueeParent);
     marquee.load();
