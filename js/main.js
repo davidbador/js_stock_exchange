@@ -27,6 +27,7 @@ inputSearch = () => {
     form.onSearch(queryInput.value);
 }
 
+// Function to call the Stock Search Results for autocomplete searches
 inputAutocomplete = () => {
     if (re.test(queryInput.value) === true) {
         const form = new SearchForm(searchBar);
@@ -34,6 +35,7 @@ inputAutocomplete = () => {
     }
 }
 
+// Debounce function to time the completion of the autocompletion function
 debounce = (func, wait, immediate) => {
     let timeout;
     return function () {
@@ -62,10 +64,31 @@ createCompanyNamesRefresh = () => {
     }
 }
 
+// Function to refresh the window with the search results in the URL
+queryRefresh = () => {
+    let urlParams = new URLSearchParams(window.location.search);
+    let querySearch = urlParams.get('query');
+    if (querySearch != '') {
+        createCompanyNames(querySearch);
+        queryInput.value = querySearch;
+    }
+}
+
+// Function to add the input value in the URL in real time
+addQueryString = () => {
+    if (history.pushState) {
+        let string = queryInput.value;
+        let newURL = window.location.protocol + '?query=' + string;
+        window.history.pushState({ path: newURL }, '', newURL);
+    }
+}
+
 // Event Listeners
+window.addEventListener('load', queryRefresh);
 queryInput.addEventListener('keyup', debounce(() => {
     inputAutocomplete()
 }, 50));
 queryInput.addEventListener('keyup', createCompanyNamesRefresh);
+queryInput.addEventListener('keyup', addQueryString);
 searchButton.addEventListener('click', inputSearch);
 searchButton.addEventListener('click', createCompanyNamesRefresh);
