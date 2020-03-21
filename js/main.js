@@ -44,7 +44,7 @@ inputAutocomplete = () => {
     }
 }
 
-// debounce function to time the completion of the autocompletion function
+// Debounce function to time the completion of the autocompletion function
 debounce = (func, wait, immediate) => {
     let timeout;
     return function () {
