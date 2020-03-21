@@ -70,9 +70,9 @@ queryRefresh = () => {
     let urlParams = new URLSearchParams(window.location.search);
     let querySearch = urlParams.get('query');
     if (querySearch != '') {
+        queryInput.value = querySearch;
         const form = new SearchForm(searchBar);
         form.onSearch(queryInput.value);
-        queryInput.value = querySearch;
     }
 }
 
