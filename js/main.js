@@ -3,6 +3,7 @@ let queryInput = document.getElementById('queryInput');
 let searchButton = document.getElementById('searchButton');
 let resultParent = document.getElementById('searchResults');
 let loader = document.getElementById('loader');
+let re = /[a-zA-Z0-9]/;
 
 // Class Modifiers
 loader.classList.add('hide');
@@ -14,18 +15,14 @@ showLoader = () => {
 
 // Asynchronous function for receiving Stock Data
 createCompanyNames = async (inputValue) => {
-    if (queryInput.value === '') {
-        return null;
-    } else {
-        let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${inputValue}&limit=10&exchange=NASDAQ`);
-        let data = await ticker.json();
-        data.forEach(async (option) => {
-            let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option.symbol}`);
-            let newData = await info.json();
-            appendStockElement(option, newData.profile);
-        });
-        loader.classList.replace('show', 'hide');
-    }
+    let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${inputValue}&limit=10&exchange=NASDAQ`);
+    let data = await ticker.json();
+    data.forEach(async (option) => {
+        let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option.symbol}`);
+        let newData = await info.json();
+        appendStockElement(option, newData.profile);
+    });
+    loader.classList.replace('show', 'hide');
 }
 
 // Function for appending the stock elements to the document
