@@ -4,9 +4,12 @@ class SearchResult {
     }
     createChildren = (stock, stockInfo) => {
         let resultChild = document.createElement('div');
+        let resultChildName = document.createElement('span');
         resultParent.appendChild(resultChild);
-        resultChild.className = 'resultChildStyle';
-        resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'>${stock.name}</a>`;
+        resultChild.classList.add('resultChildStyle');
+        resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'></a>`;
+        resultChildName.innerHTML = `${stock.name}`;
+        resultChild.appendChild(resultChildName);
         this.createImage(resultChild, stock, stockInfo);
     }
     createImage = (resultChild, stock, stockInfo) => {
@@ -19,22 +22,22 @@ class SearchResult {
     createSymbol = (resultChild, stock, stockInfo) => {
         let stockSymbol = document.createElement('span');
         stockSymbol.innerHTML = `(${stock.symbol})`;
-        stockSymbol.className = 'stockSymbolStyle';
+        stockSymbol.classList.add('stockSymbolStyle');
         resultChild.appendChild(stockSymbol);
-        return this.createMovement(resultChild, stockInfo);
+        this.createMovement(resultChild, stockInfo);
     }
     createMovement = (resultChild, stockInfo) => {
         let stockPriceMovementChild = document.createElement('span');
         stockPriceMovementChild.classList.add('stockPriceStyle');
         stockPriceMovementChild.innerHTML = `${stockInfo.changesPercentage}`;
         resultChild.appendChild(stockPriceMovementChild);
-        return this.changeSign(stockPriceMovementChild);
+        this.changeSign(stockPriceMovementChild);
     }
     changeSign = (stockPriceMovementChild) => {
         if (stockPriceMovementChild.innerText.includes('-')) {
-            return stockPriceMovementChild.classList.add('minus');
+            stockPriceMovementChild.classList.add('minus');
         } else if (stockPriceMovementChild.innerText.includes('+')) {
-            return stockPriceMovementChild.classList.add('plus');
+            stockPriceMovementChild.classList.add('plus');
         }
     }
     renderResults = (stock, stockInfo) => {
