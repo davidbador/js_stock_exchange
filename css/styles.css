@@ -1,38 +1,3 @@
-/* Marquee Styling */
-.marquee {
-  width: 100%;
-  overflow: hidden;
-}
-
-.marqueeWrapper {
-  width: 100%;
-  padding-left: 100%;
-}
-
-.marqueeMovement {
-  padding-right: 100%;
-  display: inline-block;
-  white-space: nowrap;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-name: scroll;
-  animation-duration: 9000s;
-}
-
-.marqueeChild {
-  display: inline-block;
-  padding: 0 12px;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-100%, 0);
-  }
-}
-
 /* Search Bar Styling */
 .title {
   font-size: 72px;
@@ -52,7 +17,7 @@
 
 /* Search Results Styling */
 .card {
-    height: 150vh;
+height: 100vh;
 }
 
 .resultChildStyle {
@@ -91,8 +56,4 @@
 
 .plus {
   color: lightgreen;
-}
-
-.yellow {
-  background-color: yellow;
 }
