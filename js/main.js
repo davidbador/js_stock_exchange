@@ -22,6 +22,7 @@ createCompanyNames = async (inputValue) => {
     loader.classList.replace('show', 'hide');
 }
 
+// Function for appending stock elements to results display
 appendStockElement = (stock) => { 
     let resultChild = document.createElement('div');
     resultParent.appendChild(resultChild);
