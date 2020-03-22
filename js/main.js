@@ -23,6 +23,7 @@ createCompanyNames = async (inputValue) => {
     loader.classList.replace('show', 'hide');
 }
 
+// Function for appending stock elements to results display
 appendStockElement = (stock) => {
     let resultChild = document.createElement('div');
     resultParent.appendChild(resultChild);
@@ -36,12 +37,14 @@ inputSearch = () => {
     createCompanyNames(queryInput.value);
 }
 
+// Function to autocomplete user input in the Search Box
 inputAutocomplete = () => {
     if (re.test(queryInput.value) === true) {
         createCompanyNames(queryInput.value);
     }
 }
 
+// Debounce Function used for the auto completion of the input search field
 debounce = (func, wait, immediate) => {
     let timeout;
     return function () {

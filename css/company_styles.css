@@ -1,8 +1,10 @@
+/* Company Name Styling */
 span > a {
     font-size: 24px;
     margin-left: 50px;
 }
 
+/* Stock Price Styling */
 #stockPrice {
     margin-top: 3%;
 }
@@ -24,16 +26,19 @@ span > a {
     color: lightgreen;
 }
 
+/* Company Description Styling */
 #stockDescription {
     margin-top: 3%;
     max-width: 36%;
     font-size: 18px;
 }
 
+/* Stock Price Graph Styling */
 #myChart {
     max-width: 100%;
 }
 
+/* Loader Styling */
 #loader.show {
     visibility: visible;
     height: 100px;
