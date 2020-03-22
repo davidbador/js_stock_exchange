@@ -16,26 +16,57 @@ showLoader = () => {
 }
 
 // Asynchronous function for receiving Stock Data
-createCompanyNames = async (x) => {
-    let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${x}&limit=10&exchange=NASDAQ`);
+createCompanyNames = async (inputValue) => {
+    let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${inputValue}&limit=10&exchange=NASDAQ`);
     let data = await ticker.json();
-    data.forEach(async (option) => {
-        let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option.symbol}`);
-        let newData = await info.json();
-        appendStockElement(option, newData.profile);
-    });
+    let threeProfiles = [];
+    for (let i = 0; i < data.length; i += 3) {
+        if (i < data.length - 1) {
+            if (data.length === 1) {
+                let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol}`);
+                threeProfiles.push(info);
+            } else if (data.length < 3) {
+                let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol},${data[i + 1].symbol}`);
+                threeProfiles.push(info);
+            } else {
+                let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol},${data[i + 1].symbol},${data[i + 2].symbol}`);
+                threeProfiles.push(info);
+            }
+        } else {
+            let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol}`);
+            threeProfiles.push(info);
+        }
+    }
+    let profileInformation = await Promise.all(
+        threeProfiles.map(async (option) => {
+            let info = await fetch(option);
+            return await info.json()
+        })
+    );
+    let combineInformation = [];
+    for (let i = 0; i < profileInformation.length; i++) {
+        if (profileInformation[i].companyProfiles) {
+            combineInformation.push(profileInformation[i].companyProfiles);
+        } else if (profileInformation) {
+            combineInformation.push(profileInformation[i]);
+        }
+    }
+    let fuse = [].concat.apply([], combineInformation);
+    fuse.map((option) => {
+        appendStockElement(option);
+    })
     loader.classList.replace('show', 'hide');
 }
 
 // Function for appending the stock elements to the document
-appendStockElement = (stock, stockInfo) => {
+appendStockElement = (stock) => {
     let resultChild = document.createElement('div');
     resultParent.appendChild(resultChild);
     resultChild.className = 'resultChildStyle';
     let stockImage = document.createElement('img');
     stockImage.className = 'imageSize';
-    stockImage.src = `${stockInfo.image}`;
-    resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'>${stock.name}</a>`;
+    stockImage.src = `${stock.profile.image}`;
+    resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'>${stock.profile.companyName}</a>`;
     resultChild.prepend(stockImage);
     let stockSymbol = document.createElement('span');
     stockSymbol.innerHTML = `(${stock.symbol})`;
@@ -43,7 +74,7 @@ appendStockElement = (stock, stockInfo) => {
     resultChild.appendChild(stockSymbol);
     let stockPriceMovementChild = document.createElement('span');
     stockPriceMovementChild.classList.add('stockPriceStyle');
-    stockPriceMovementChild.innerHTML = `${stockInfo.changesPercentage}`;
+    stockPriceMovementChild.innerHTML = `${stock.profile.changesPercentage}`;
     resultChild.appendChild(stockPriceMovementChild);
     if (stockPriceMovementChild.innerText.includes('-')) {
         stockPriceMovementChild.classList.add('minus');
