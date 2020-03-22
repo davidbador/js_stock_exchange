@@ -2,34 +2,34 @@ class SearchResult {
     constructor(div) {
         this.div = div;
     }
-    createChildren = (stock, stockInfo) => {
+    createChildren = (stock) => {
         let resultChild = document.createElement('div');
         let resultChildName = document.createElement('span');
         resultParent.appendChild(resultChild);
         resultChild.classList.add('resultChildStyle');
         resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'></a>`;
-        resultChildName.innerHTML = `${stock.name}`;
+        resultChildName.innerHTML = `${stock.profile.companyName}`;
         resultChild.appendChild(resultChildName);
-        this.createImage(resultChild, stock, stockInfo);
+        this.createImage(resultChild, stock);
     }
-    createImage = (resultChild, stock, stockInfo) => {
+    createImage = (resultChild, stock) => {
         let stockImage = document.createElement('img');
         stockImage.className = 'imageSize';
-        stockImage.src = `${stockInfo.image}`;
+        stockImage.src = `${stock.profile.image}`;
         resultChild.prepend(stockImage);
-        this.createSymbol(resultChild, stock, stockInfo);
+        this.createSymbol(resultChild, stock);
     }
-    createSymbol = (resultChild, stock, stockInfo) => {
+    createSymbol = (resultChild, stock) => {
         let stockSymbol = document.createElement('span');
         stockSymbol.innerHTML = `(${stock.symbol})`;
         stockSymbol.classList.add('stockSymbolStyle');
         resultChild.appendChild(stockSymbol);
-        this.createMovement(resultChild, stockInfo);
+        this.createMovement(resultChild, stock);
     }
-    createMovement = (resultChild, stockInfo) => {
+    createMovement = (resultChild, stock) => {
         let stockPriceMovementChild = document.createElement('span');
         stockPriceMovementChild.classList.add('stockPriceStyle');
-        stockPriceMovementChild.innerHTML = `${stockInfo.changesPercentage}`;
+        stockPriceMovementChild.innerHTML = `${stock.profile.changesPercentage}`;
         resultChild.appendChild(stockPriceMovementChild);
         this.changeSign(stockPriceMovementChild);
     }
@@ -40,7 +40,7 @@ class SearchResult {
             stockPriceMovementChild.classList.add('plus');
         }
     }
-    renderResults = (stock, stockInfo) => {
-        this.createChildren(stock, stockInfo);
+    renderResults = (stock) => {
+        this.createChildren(stock);
     }
 }
