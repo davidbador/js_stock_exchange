@@ -1,3 +1,4 @@
+// StockInformation Class used to append data to the Stock Information Page
 class StockInformation {
     constructor(div) {
         this.div = div;

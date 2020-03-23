@@ -1,3 +1,4 @@
+// SearchResult Class used to append Stock Data to Page
 class SearchResult {
     constructor(div) {
         this.div = div;

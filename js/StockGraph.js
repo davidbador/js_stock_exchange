@@ -1,3 +1,4 @@
+// StockGraph class used to create the Stock Price Graph
 class StockGraph {
     constructor(div) {
         this.div = div;
