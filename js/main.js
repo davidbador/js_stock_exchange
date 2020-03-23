@@ -11,11 +11,6 @@ let re = /[a-zA-Z0-9]/;
 // Class Modifiers
 loader.classList.add('hide');
 
-// Function to show Loader before results are displayed
-showLoader = () => {
-    loader.classList.replace('hide', 'show');
-}
-
 //Asynchronous function for receiving Stock Data for Marquee
 createCompanyMarquee = async () => {
     let info = await fetch(`https://financialmodelingprep.com/api/v3/company/stock/list`);
@@ -41,6 +36,11 @@ appendStockFeatures = (stock) => {
         marqueeMovement.appendChild(marqueeChild);
         marqueeChild.appendChild(marqueeChildPrice);
     }
+}
+
+// Function to show Loader before results are displayed
+showLoader = () => {
+    loader.classList.replace('hide', 'show');
 }
 
 // Asynchronous function for receiving Stock Data
