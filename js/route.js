@@ -1,26 +1,39 @@
-let titleParent = document.getElementById('stockTitle');
-let stockPriceParent = document.getElementById('stockPrice');
-let stockDescriptionParent = document.getElementById('stockDescription');
-let stockGraphParent = document.getElementById('stockGraph');
-let loader = document.getElementById('loader');
+// Global Variables
+const stockInformation = document.getElementById('stockInformation');
+const titleParent = document.createElement('div');
+const stockPriceParent = document.createElement('div');
+stockPriceParent.id = 'stockPrice';
+const stockDescriptionParent = document.createElement('div');
+stockDescriptionParent.id = 'stockDescription'
+const stockGraphParent = document.createElement('div');
+const stockGraphChild = document.createElement('canvas');
+stockGraphChild.id = 'myChart';
+const loader = document.getElementById('loader');
 
+// Class Modifiers
 loader.classList.add('hide');
 
+// Function to show Loader before results are displayed
 showLoader = () => {
     loader.classList.replace('hide', 'show');
 }
 
+// Asynchronous function for receiving Stock Data
 createStockInformation = async () => {
     let urlParams = new URLSearchParams(window.location.search);
     let symbol = urlParams.get('symbol');
     let title = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${symbol}`);
     let data = await title.json();
+    stockInformation.appendChild(titleParent);
+    stockInformation.appendChild(stockPriceParent);
     appendCompanyName(data.profile);
     appendCompanyStock(data.profile);
+    stockInformation.appendChild(stockDescriptionParent)
     stockDescriptionParent.innerHTML = `${data.profile.description}`;
     loader.classList.replace('show', 'hide');
 }
 
+// Function to append Company Name and Industry Name
 appendCompanyName = (object) => {
     let titleChildImage = document.createElement('span');
     let titleChildName = document.createElement('span');
@@ -30,6 +43,7 @@ appendCompanyName = (object) => {
     titleParent.appendChild(titleChildName);
 }
 
+// Function to append Stock Price and Price Movement
 appendCompanyStock = (object) => {
     let stockPriceTitleChild = document.createElement('span');
     stockPriceTitleChild.innerHTML = 'Stock Price: ';
@@ -49,11 +63,14 @@ appendCompanyStock = (object) => {
     }
 }
 
+// Asynchronous Function to create Stock Price Graph
 createStockPriceHistory = async () => {
     let urlParams = new URLSearchParams(window.location.search);
     let symbol = urlParams.get('symbol');
     let history = await fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?serietype=line`);
     let data = await history.json();
+    stockInformation.appendChild(stockGraphParent);
+    stockGraphParent.appendChild(stockGraphChild);
     let dataDates = [];
     let dataCloses = [];
     let chosenDataDates = [];
@@ -79,6 +96,7 @@ createStockPriceHistory = async () => {
     });
 }
 
+// Function to push chosen data into Stock Price Graph
 pushData = (dataA, dataB, newDataA, newDataB) => {
     let val = 18;
     let divider = Math.floor(dataA.length / val);
@@ -90,10 +108,12 @@ pushData = (dataA, dataB, newDataA, newDataB) => {
     }
 }
 
+// Function to call the main functions
 loadWindow = () => {
     showLoader();
     createStockInformation();
     createStockPriceHistory();
 }
 
+// Event Listeners
 window.addEventListener('load', loadWindow);
