@@ -35,7 +35,6 @@ class SearchForm {
             );
             let combineInformation = [];
             for (let i = 0; i < profileInformation.length; i++) {
-                console.log(profileInformation);
                 if (profileInformation[i].companyProfiles) {
                     combineInformation.push(profileInformation[i].companyProfiles);
                 } else if (profileInformation) {
