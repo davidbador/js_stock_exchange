@@ -1,5 +1,7 @@
 // Global Variables
-let marqueeMovement = document.getElementById('marqueeMovement');
+let marquee = document.getElementById('marquee');
+let marqueeWrapper = document.createElement('div');
+let marqueeMovement = document.createElement('div');
 let queryInput = document.getElementById('queryInput');
 let searchButton = document.getElementById('searchButton');
 let resultParent = document.getElementById('searchResults');
@@ -18,6 +20,10 @@ showLoader = () => {
 createCompanyMarquee = async () => {
     let info = await fetch(`https://financialmodelingprep.com/api/v3/company/stock/list`);
     let data = await info.json();
+    marqueeWrapper.className = 'marqueeWrapper';
+    marqueeMovement.className = 'marqueeMovement';
+    marquee.appendChild(marqueeWrapper);
+    marqueeWrapper.appendChild(marqueeMovement);
     data.symbolsList.forEach((option) => {
         appendStockFeatures(option);
     })
