@@ -30,7 +30,7 @@ class SearchForm {
             let profileInformation = await Promise.all(
                 threeProfiles.map(async (option) => {
                     let info = await fetch(option);
-                    return await info.json()
+                    return await info.json();
                 })
             );
             let combineInformation = [];

@@ -6,7 +6,7 @@ class SearchResult {
     createChildren = (stock) => {
         let resultChild = document.createElement('div');
         let resultChildName = document.createElement('span');
-        resultParent.appendChild(resultChild);
+        this.div.appendChild(resultChild);
         resultChild.classList.add('resultChildStyle');
         resultChild.id = 'resultChild';
         resultChildName.id = 'resultChildName';
