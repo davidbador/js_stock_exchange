@@ -1,4 +1,3 @@
-
 // Global Variables
 let titleParent = document.getElementById('stockTitle');
 let stockPriceParent = document.getElementById('stockPrice');
