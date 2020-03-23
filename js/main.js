@@ -89,7 +89,7 @@ addQueryString = () => {
 window.addEventListener('load', queryRefresh);
 queryInput.addEventListener('keyup', debounce(() => {
     inputAutocomplete()
-}, 50));
+}, 400));
 queryInput.addEventListener('keyup', createCompanyNamesRefresh);
 queryInput.addEventListener('keyup', addQueryString);
 searchButton.addEventListener('click', inputSearch);
