@@ -1,26 +1,26 @@
 /* Loader Styling */
 #loader.show {
-    visibility: visible;
-    height: 100px;
-    width: 100px;
+  visibility: visible;
+  height: 100px;
+  width: 100px;
 }
 
 #loader.hide {
-    display: none;
+  display: none;
 }
 
 /* Search Results Styling */
 .card {
-    height: 100vh;
+  height: 100vh;
 }
 
 .resultChildStyle {
-    margin-top: 10px;
-    padding-bottom: 10px;
-    font-size: 20px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  font-size: 20px;
 }
 
 #searchResults > div:not(:last-child) {
-    border-bottom: 1px solid gainsboro;
-    width: 82%;
+  border-bottom: 1px solid gainsboro;
+  width: 82%;
 }
