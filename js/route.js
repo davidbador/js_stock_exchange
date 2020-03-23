@@ -1,15 +1,19 @@
+// Global Variables
 let titleParent = document.getElementById('stockTitle');
 let stockPriceParent = document.getElementById('stockPrice');
 let stockDescriptionParent = document.getElementById('stockDescription');
 let stockGraphParent = document.getElementById('stockGraph');
 let loader = document.getElementById('loader');
 
+// Class Modifiers
 loader.classList.add('hide');
 
+// Function to show Loader before results are displayed
 showLoader = () => {
     loader.classList.replace('hide', 'show');
 }
 
+// Asynchronous function for receiving Stock Data
 createStockInformation = async () => {
     let urlParams = new URLSearchParams(window.location.search);
     let symbol = urlParams.get('symbol');
@@ -21,6 +25,7 @@ createStockInformation = async () => {
     loader.classList.replace('show', 'hide');
 }
 
+// Function to append Company Name and Industry Name
 appendCompanyName = (object) => {
     let titleChildImage = document.createElement('span');
     let titleChildName = document.createElement('span');
@@ -30,6 +35,7 @@ appendCompanyName = (object) => {
     titleParent.appendChild(titleChildName);
 }
 
+// Function to append Stock Price and Price Movement
 appendCompanyStock = (object) => {
     let stockPriceTitleChild = document.createElement('span');
     stockPriceTitleChild.innerHTML = 'Stock Price: ';
@@ -49,6 +55,7 @@ appendCompanyStock = (object) => {
     }
 }
 
+// Asynchronous Function to create Stock Price Graph
 createStockPriceHistory = async () => {
     let urlParams = new URLSearchParams(window.location.search);
     let symbol = urlParams.get('symbol');
@@ -79,6 +86,7 @@ createStockPriceHistory = async () => {
     });
 }
 
+// Function to push chosen data into Stock Price Graph
 pushData = (dataA, dataB, newDataA, newDataB) => {
     let val = 18;
     let divider = Math.floor(dataA.length / val);
@@ -90,10 +98,12 @@ pushData = (dataA, dataB, newDataA, newDataB) => {
     }
 }
 
+// Function to call the main functions
 loadWindow = () => {
     showLoader();
     createStockInformation();
     createStockPriceHistory();
 }
 
+// Event Listeners
 window.addEventListener('load', loadWindow);

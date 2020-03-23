@@ -1,18 +1,18 @@
 /* Search Bar Styling */
 .title {
-    font-size: 72px;
-    font-weight: 500;
+  font-size: 72px;
+  font-weight: 500;
 }
 
 /* Loader Styling */
 #loader.show {
-    visibility: visible;
-    height: 100px;
-    width: 100px;
+  visibility: visible;
+  height: 100px;
+  width: 100px;
 }
 
 #loader.hide {
-    display: none;
+  display: none;
 }
 
 /* Search Results Styling */
@@ -21,39 +21,39 @@
 }
 
 .resultChildStyle {
-    margin-top: 10px;
-    padding-bottom: 10px;
+  margin-top: 10px;
+  padding-bottom: 10px;
 }
 
 .resultChildStyle > a {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .stockSymbolStyle {
-    margin-left: 2%;
-    font-size: 14px;
-    color: grey;
+  margin-left: 2%;
+  font-size: 14px;
+  color: grey;
 }
 
 .stockPriceStyle {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 #searchResults > div:not(:last-child) {
-    border-bottom: 1px solid gainsboro;
-    width: 82%;
+  border-bottom: 1px solid gainsboro;
+  width: 82%;
 }
 
 .imageSize {
-    height: 50px;
-    width: auto;
-    margin-right: 2%;
+  height: 50px;
+  width: auto;
+  margin-right: 2%;
 }
 
 .minus {
-    color: red;
+  color: red;
 }
 
 .plus {
-    color: lightgreen;
+  color: lightgreen;
 }
