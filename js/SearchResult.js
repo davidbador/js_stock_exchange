@@ -1,3 +1,4 @@
+// SearchResult Class used to append Stock Data to Page
 class SearchResult {
     constructor(div) {
         this.div = div;
@@ -5,7 +6,7 @@ class SearchResult {
     createChildren = (stock) => {
         let resultChild = document.createElement('div');
         let resultChildName = document.createElement('span');
-        resultParent.appendChild(resultChild);
+        this.div.appendChild(resultChild);
         resultChild.classList.add('resultChildStyle');
         resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'></a>`;
         resultChildName.innerHTML = `${stock.profile.companyName}`;

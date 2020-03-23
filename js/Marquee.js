@@ -1,3 +1,4 @@
+// Marquee Class to build the Marquee
 class Marquee {
     constructor(div) {
         this.div = div;

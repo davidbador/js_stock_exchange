@@ -10,16 +10,16 @@ let re = /[a-zA-Z0-9]/;
 // Class Modifiers
 loader.classList.add('hide');
 
-// Function to show Loader before results are displayed
-showLoader = () => {
-    loader.classList.replace('hide', 'show');
-}
-
 // Asynchronous function to load the Marquee on the window being loaded
 (async function () {
     const marquee = new Marquee(marqueeParent);
     marquee.load();
 })()
+
+// Function to show Loader before results are displayed
+showLoader = () => {
+    loader.classList.replace('hide', 'show');
+}
 
 // Function to call the Loader and Stock Search Results
 inputSearch = () => {

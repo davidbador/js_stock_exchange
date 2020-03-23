@@ -1,3 +1,4 @@
+// SearchForm Class to fetch the data used to fill the Search Results
 class SearchForm {
     constructor(div) {
         this.div = div;
