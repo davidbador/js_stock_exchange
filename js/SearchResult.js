@@ -15,6 +15,7 @@ class SearchResult {
         resultChild.appendChild(resultChildName);
         this.highlight(queryInput.value, resultChildName);
         this.createImage(resultChild, stock);
+        this.createButton(resultChild);
     }
     createImage = (resultChild, stock) => {
         let stockImage = document.createElement('img');
@@ -47,6 +48,14 @@ class SearchResult {
         } else if (stockPriceMovementChild.innerText.includes('+')) {
             stockPriceMovementChild.classList.add('plus');
         }
+    }
+    createButton = (resultChild) => {
+        let resultButton = document.createElement('button');
+        resultButton.classList.add('btn');
+        resultButton.classList.add('btn-info');
+        resultButton.id = 'resultButton';
+        resultButton.innerHTML = 'Compare';
+        resultChild.appendChild(resultButton);
     }
     highlight = (queryInput, resultChild) => {
         queryInput = queryInput.toLowerCase();

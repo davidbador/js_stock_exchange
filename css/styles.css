@@ -96,3 +96,8 @@
 .yellow {
   background-color: yellow;
 }
+
+.btn-info {
+  position: absolute;
+  right: 17%;
+}
