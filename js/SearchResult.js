@@ -2,6 +2,7 @@
 class SearchResult {
     constructor(div) {
         this.div = div;
+        this.button = document.createElement('button');
     }
     createChildren = (stock) => {
         let resultChild = document.createElement('div');
@@ -13,9 +14,12 @@ class SearchResult {
         resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'></a>`;
         resultChildName.innerHTML = `${stock.profile.companyName}`;
         resultChild.appendChild(resultChildName);
+        this.button.addEventListener('click', () => {
+            console.log(stock.profile);
+        });
         this.highlight(queryInput.value, resultChildName);
         this.createImage(resultChild, stock);
-        this.createButton(resultChild);
+        this.createButton(resultChild, stock);
     }
     createImage = (resultChild, stock) => {
         let stockImage = document.createElement('img');
@@ -50,12 +54,11 @@ class SearchResult {
         }
     }
     createButton = (resultChild) => {
-        let resultButton = document.createElement('button');
-        resultButton.classList.add('btn');
-        resultButton.classList.add('btn-info');
-        resultButton.id = 'resultButton';
-        resultButton.innerHTML = 'Compare';
-        resultChild.appendChild(resultButton);
+        this.button.classList.add('btn');
+        this.button.classList.add('btn-info');
+        this.button.id = 'resultButton';
+        this.button.innerHTML = 'Compare';
+        resultChild.appendChild(this.button);
     }
     highlight = (queryInput, resultChild) => {
         queryInput = queryInput.toLowerCase();
