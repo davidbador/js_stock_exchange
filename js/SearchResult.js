@@ -16,6 +16,8 @@ class SearchResult {
         resultChild.appendChild(resultChildName);
         this.button.addEventListener('click', () => {
             console.log(stock.profile);
+            const compareCompanies = new ComparisonCompanies(comparisonHolder, stock);
+            compareCompanies.compareOptions()
         });
         this.highlight(queryInput.value, resultChildName);
         this.createImage(resultChild, stock);
@@ -59,6 +61,13 @@ class SearchResult {
         this.button.id = 'resultButton';
         this.button.innerHTML = 'Compare';
         resultChild.appendChild(this.button);
+        this.button.addEventListener('click', function () {
+            if (count === 1) {
+                compareAmount.innerHTML = `<a href='#'>Compare ${count} Company</a>`;
+            } else if (count > 1) {
+                compareAmount.innerHTML = `<a href='#'>Compare ${count} Companies</a>`;
+            }
+        });
     }
     highlight = (queryInput, resultChild) => {
         queryInput = queryInput.toLowerCase();

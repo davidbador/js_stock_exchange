@@ -4,7 +4,11 @@ let searchBar = document.getElementById('searchBar');
 let queryInput = document.getElementById('queryInput');
 let searchButton = document.getElementById('searchButton');
 let resultParent = document.getElementById('searchResults');
+let comparisonHolder = document.getElementById('comparisonHolder');
 let loader = document.getElementById('loader');
+let compareAmount = document.getElementById('compareAmount');
+let count = 0;
+let usedSymbols = [];
 let re = /[a-zA-Z0-9]/;
 
 // Class Modifiers

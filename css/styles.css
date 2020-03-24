@@ -33,6 +33,34 @@
   }
 }
 
+/* Comparison Section Styling */
+#comparisonHolder {
+  z-index: 1;
+  max-width: auto;
+  min-height: 50px;
+}
+
+#comparisonCompany {
+  margin-right: 0.5%;
+  margin-top: 0.5%;
+  width: 7%;
+}
+
+#comparisonSymbol {
+  float: left;
+}
+
+.deleteComparison {
+  float: right;
+}
+
+#compareAmount {
+  font-size: 20px;
+  color: gainsboro;
+  float: right;
+  margin-top: 0.5%;
+}
+
 /* Search Bar Styling */
 .title {
   font-size: 72px;
@@ -97,7 +125,7 @@
   background-color: yellow;
 }
 
-.btn-info {
+#resultButton {
   position: absolute;
   right: 17%;
 }
