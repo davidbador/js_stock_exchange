@@ -38,6 +38,7 @@
   z-index: 1;
   max-width: auto;
   min-height: 50px;
+  color: gainsboro;
 }
 
 #comparisonCompany {
@@ -54,11 +55,19 @@
   float: right;
 }
 
-#compareAmount {
+.compareAmount {
   font-size: 20px;
-  color: gainsboro;
   float: right;
-  margin-top: 0.5%;
+  margin-top: 0.8%;
+  margin-right: 2%;
+}
+
+.compareAmountLink {
+  color: #2a90fe;
+  font-size: 20px;
+  float: right;
+  margin-top: 0.8%;
+  margin-right: 2%;
 }
 
 /* Search Bar Styling */

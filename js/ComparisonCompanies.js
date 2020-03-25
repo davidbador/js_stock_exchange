@@ -34,11 +34,14 @@ class ComparisonCompanies {
             if (index > -1) {
                 usedSymbols.splice(index, 1);
             }
-            compareAmount.innerHTML = `<a href='#'>Compare ${count} Companies</a>`;
+            compareAmount.innerHTML = `Compare ${count} Companies`;
             if (count === 1) {
-                compareAmount.innerHTML = `<a href='#'>Compare ${count} Company</a>`;
+                compareAmount.innerHTML = `Compare ${count} Company`;
+                compareAmount.setAttribute('href', `company.html?symbol=${usedSymbols}`);
             } else if (count === 0) {
                 compareAmount.innerHTML = 'Compare';
+                compareAmount.className = 'compareAmount';
+                compareAmount.removeAttribute('href');
             }
         });
     }

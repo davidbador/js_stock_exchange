@@ -55,7 +55,7 @@ class SearchResult {
             stockPriceMovementChild.classList.add('plus');
         }
     }
-    createButton = (resultChild) => {
+    createButton = (resultChild, stock) => {
         this.button.classList.add('btn');
         this.button.classList.add('btn-info');
         this.button.id = 'resultButton';
@@ -63,9 +63,12 @@ class SearchResult {
         resultChild.appendChild(this.button);
         this.button.addEventListener('click', function () {
             if (count === 1) {
-                compareAmount.innerHTML = `<a href='#'>Compare ${count} Company</a>`;
+                compareAmount.innerHTML = `Compare ${count} Company`;
+                compareAmount.className = 'compareAmountLink';
+                compareAmount.setAttribute('href', `company.html?symbol=${usedSymbols}`);
             } else if (count > 1) {
-                compareAmount.innerHTML = `<a href='#'>Compare ${count} Companies</a>`;
+                compareAmount.setAttribute('href', `company.html?symbol=${usedSymbols}`);
+                compareAmount.innerHTML = `Compare ${count} Companies`;
             }
         });
     }
