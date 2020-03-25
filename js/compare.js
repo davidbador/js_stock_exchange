@@ -7,19 +7,19 @@ createComparisonCards = async () => {
     comparisonSymbols.forEach(async (option) => {
         let section = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option}`);
         let data = await section.json();
-        createComparisonCardsHeaders(data);
+        let stockSection = document.createElement('div');
+        stockSection.classList.add('card');
+        stockSection.classList.add('shadow');
+        stockSection.classList.add('p-3');
+        stockSection.classList.add('mb-5');
+        stockSection.classList.add('bg-white');
+        stockSection.classList.add('rounded');
+        createComparisonCardsHeaders(data, stockSection);
+        createComparisonCardsPrice(data, stockSection);
     })
 }
 
-createComparisonCardsHeaders = (stock) => {
-    let stockSection = document.createElement('div');
-    stockSection.classList.add('card');
-    stockSection.classList.add('shadow');
-    stockSection.classList.add('p-3');
-    stockSection.classList.add('mb-5');
-    stockSection.classList.add('bg-white');
-    stockSection.classList.add('rounded');
-    stockSection.classList.add('d-inline-block');
+createComparisonCardsHeaders = (stock, stockSection) => {
     let stockSectionTitleParent = document.createElement('div');
     let stockSectionTitleImage = document.createElement('span');
     let stockSectionTitle = document.createElement('span');
@@ -32,6 +32,17 @@ createComparisonCardsHeaders = (stock) => {
     stockSectionTitleParent.appendChild(stockSectionTitleIndustry);
     stockSection.appendChild(stockSectionTitleParent);
     container.appendChild(stockSection);
+}
+
+createComparisonCardsPrice = (stock, stockSection) => {
+    let stockSectionPriceParent = document.createElement('div');
+    let stockSectionPrice = document.createElement('span');
+    let stockSectionPriceMovement = document.createElement('span');
+    stockSectionPrice.innerHTML = `Stock Price: $${stock.profile.price}`;
+    stockSectionPriceMovement.innerHTML = `${stock.profile.changesPercentage}`;
+    stockSectionPriceParent.appendChild(stockSectionPrice);
+    stockSectionPriceParent.appendChild(stockSectionPriceMovement);
+    stockSection.appendChild(stockSectionPriceParent);
 }
 
 window.addEventListener('load', createComparisonCards);

@@ -22,6 +22,11 @@ class ComparisonCompanies {
             this.increment();
         }
         let deleteChild = document.getElementsByClassName('deleteComparison');
+
+        // for (let deleteButton of deleteChild) {
+        //     console.log(this.div.parentNode);
+        //     deleteButton.addEventListener('click', this.div.parentNode.remove)
+        // }
         for (let i = 0; i < deleteChild.length; i++) {
             let deleteButton = deleteChild[i];
             deleteButton.addEventListener('click', function () {
@@ -31,6 +36,8 @@ class ComparisonCompanies {
         this.deleteIt.addEventListener('click', function () {
             count--;
             const index = usedSymbols.indexOf(stock.symbol);
+
+            //change it for a switch statement
             if (index > -1) {
                 usedSymbols.splice(index, 1);
             }
