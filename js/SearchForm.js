@@ -27,7 +27,6 @@ class SearchForm {
                     threeProfiles.push(info);
                 }
             }
-            console.log(threeProfiles);
             let profileInformation = await Promise.all(
                 threeProfiles.map(async (option) => {
                     let info = await fetch(option);

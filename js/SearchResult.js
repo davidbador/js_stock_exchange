@@ -6,14 +6,16 @@ class SearchResult {
     }
     createChildren = (stock) => {
         let resultChild = document.createElement('div');
+        let resultChildLink = document.createElement('a');
         let resultChildName = document.createElement('span');
         this.div.appendChild(resultChild);
         resultChild.classList.add('resultChildStyle');
         resultChild.id = 'resultChild';
         resultChildName.id = 'resultChildName';
-        resultChild.innerHTML = `<a href='company.html?symbol=${stock.symbol}'></a>`;
+        resultChildLink.setAttribute('href', `company.html?symbol=${stock.symbol}`);
         resultChildName.innerHTML = `${stock.profile.companyName}`;
-        resultChild.appendChild(resultChildName);
+        resultChildLink.appendChild(resultChildName);
+        resultChild.appendChild(resultChildLink);
         this.button.addEventListener('click', () => {
             console.log(stock.profile);
             const compareCompanies = new ComparisonCompanies(comparisonHolder, stock);
