@@ -15,7 +15,7 @@ class SearchForm {
                     if (data.length === 1) {
                         let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol}`);
                         threeProfiles.push(info);
-                    } else if (data.length < 3) {
+                    } else if (data.length === 2) {
                         let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol},${data[i + 1].symbol}`);
                         threeProfiles.push(info);
                     } else {
@@ -27,17 +27,19 @@ class SearchForm {
                     threeProfiles.push(info);
                 }
             }
+            console.log(threeProfiles);
             let profileInformation = await Promise.all(
                 threeProfiles.map(async (option) => {
                     let info = await fetch(option);
-                    return await info.json()
+                    let data = await info.json();
+                    return data;
                 })
             );
             let combineInformation = [];
             for (let i = 0; i < profileInformation.length; i++) {
                 if (profileInformation[i].companyProfiles) {
                     combineInformation.push(profileInformation[i].companyProfiles);
-                } else if (profileInformation) {
+                } else if (profileInformation[i]) {
                     combineInformation.push(profileInformation[i]);
                 }
             }
