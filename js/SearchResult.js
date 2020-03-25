@@ -65,9 +65,9 @@ class SearchResult {
             if (count === 1) {
                 compareAmount.innerHTML = `Compare ${count} Company`;
                 compareAmount.className = 'compareAmountLink';
-                compareAmount.setAttribute('href', `compare.html?symbol=${usedSymbols}`);
+                compareAmount.setAttribute('href', `company.html?symbol=${usedSymbols}`);
             } else if (count > 1) {
-                compareAmount.setAttribute('href', `compare.html?symbol=${usedSymbols}`);
+                compareAmount.setAttribute('href', `compare.html?symbols=${usedSymbols}`);
                 compareAmount.innerHTML = `Compare ${count} Companies`;
             }
         });
