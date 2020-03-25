@@ -21,7 +21,7 @@ class SearchResult {
         });
         this.highlight(queryInput.value, resultChildName);
         this.createImage(resultChild, stock);
-        this.createButton(resultChild, stock);
+        this.createButton(resultChild);
     }
     createImage = (resultChild, stock) => {
         let stockImage = document.createElement('img');
@@ -55,7 +55,7 @@ class SearchResult {
             stockPriceMovementChild.classList.add('plus');
         }
     }
-    createButton = (resultChild, stock) => {
+    createButton = (resultChild) => {
         this.button.classList.add('btn');
         this.button.classList.add('btn-info');
         this.button.id = 'resultButton';
