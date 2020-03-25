@@ -10,7 +10,7 @@ class ComparisonCompanies {
         usedSymbols.push(this.stock.symbol);
     }
     createComparisonSelection = (stock) => {
-        if (!usedSymbols.includes(stock.symbol)) {
+        if (!usedSymbols.includes(stock.symbol) && usedSymbols.length < 3) {
             this.compare.classList.add('btn');
             this.compare.classList.add('btn-info');
             this.compare.id = 'comparisonCompany';
