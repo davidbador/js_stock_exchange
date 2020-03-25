@@ -37,7 +37,7 @@ class ComparisonCompanies {
             compareAmount.innerHTML = `Compare ${count} Companies`;
             if (count === 1) {
                 compareAmount.innerHTML = `Compare ${count} Company`;
-                compareAmount.setAttribute('href', `company.html?symbol=${usedSymbols}`);
+                compareAmount.setAttribute('href', `compare.html?symbol=${usedSymbols}`);
             } else if (count === 0) {
                 compareAmount.innerHTML = 'Compare';
                 compareAmount.className = 'compareAmount';
