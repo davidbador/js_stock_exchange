@@ -1,4 +1,58 @@
+span > a {
+  font-size: 24px;
+  margin-left: 6%;
+  vertical-align: middle;
+}
+
+span > img {
+  width: 15%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.stockSectionTitleParent {
+  vertical-align: middle;
+}
+
+.stockSectionTitleIndustry {
+  font-size: 18px;
+  color: gainsboro;
+  vertical-align: middle;
+}
+
+.stockSectionPriceParent {
+  margin-top: 5%;
+}
+
+.stockSectionPrice {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.stockSectionPriceMovement {
+  font-size: 18px;
+}
+
+.minus {
+  color: red;
+}
+
+.plus {
+  color: lightgreen;
+}
+
+.stockSectionDescription {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  max-width: 60%;
+  font-size: 14px;
+}
+
 .title {
   font-size: 72px;
   font-weight: 500;
+}
+
+.card {
+  display: inline-block;
 }
