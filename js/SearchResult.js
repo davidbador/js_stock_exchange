@@ -18,8 +18,7 @@ class SearchResult {
         resultChild.appendChild(resultChildLink);
         this.button.addEventListener('click', () => {
             console.log(stock.profile);
-            const compareCompanies = new ComparisonCompanies(store.comparisonHolder, stock);
-            compareCompanies.compareOptions()
+            new ComparisonCompanies(store.comparisonHolder, stock);
         });
         this.highlight(queryInput.value, resultChildName);
         this.createImage(resultChild, stock);

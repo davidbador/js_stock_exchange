@@ -5,7 +5,6 @@ let store = {};
 (async function () {
     store.marqueeParent = document.getElementById('marquee');
     store.marquee = new Marquee(store.marqueeParent);
-    store.marquee.load();
 })()
 
 // Function to show Loader before results are displayed
@@ -20,7 +19,6 @@ store.inputSearch = () => {
     store.searchBar = document.getElementById('searchBar');
     store.queryInput = document.getElementById('queryInput');
     store.form = new SearchForm(store.searchBar);
-    store.form.onSearch(store.queryInput.value);
 }
 
 // Function to call the Stock Search Results for autocomplete searches
@@ -30,7 +28,6 @@ store.inputAutocomplete = () => {
     if (store.re.test(store.queryInput.value) === true) {
         store.searchBar = document.getElementById('searchBar');
         store.form = new SearchForm(store.searchBar);
-        store.form.onSearch(store.queryInput.value);
     }
 }
 
@@ -74,7 +71,6 @@ store.queryRefresh = () => {
         store.queryInput.value = store.querySearch;
         store.searchBar = document.getElementById('searchBar');
         store.form = new SearchForm(store.searchBar);
-        store.form.onSearch(store.queryInput.value);
     }
 }
 

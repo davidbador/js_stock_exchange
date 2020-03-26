@@ -2,6 +2,7 @@
 class StockInformation {
     constructor(div) {
         this.div = div;
+        this.loadData();
     }
     createStockInformation = async () => {
         let urlParams = new URLSearchParams(window.location.search);

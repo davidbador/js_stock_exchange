@@ -1,6 +1,7 @@
 class StockComparisonInformation {
     constructor(div) {
         this.div = div;
+        this.loadData();
     }
     createComparisonCards = async () => {
         let urlParams = new URLSearchParams(window.location.search);

@@ -2,6 +2,7 @@
 class SearchForm {
     constructor(div) {
         this.div = div;
+        this.onSearch(store.queryInput.value);
     }
     onSearch = async (inputValue) => {
         if (queryInput.value === '') {

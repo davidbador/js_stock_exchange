@@ -2,6 +2,7 @@
 class Marquee {
     constructor(div) {
         this.div = div;
+        this.load();
     }
     async appendMarqueeElements() {
         let info = await fetch(`https://financialmodelingprep.com/api/v3/company/stock/list`);

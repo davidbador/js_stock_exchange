@@ -4,6 +4,7 @@ class ComparisonCompanies {
         this.stock = stock;
         this.compare = document.createElement('button');
         this.deleteIt = document.createElement('span');
+        this.compareOptions();
     }
     increment = () => {
         store.count++;

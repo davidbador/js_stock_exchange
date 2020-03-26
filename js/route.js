@@ -20,7 +20,5 @@ store.showLoader = () => {
     store.stockGraphChild = document.createElement('canvas');
     store.stockGraphChild.id = 'myChart';
     store.stockInfo = new StockInformation(store.stockInformation);
-    store.stockInfo.loadData();
     store.stockData = new StockGraph(store.stockGraphParent);
-    store.stockData.loadChart();
 })()

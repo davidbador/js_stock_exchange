@@ -2,6 +2,7 @@
 class StockGraph {
     constructor(div) {
         this.div = div;
+        this.loadChart();
     }
     createStockPriceHistory = async () => {
         let urlParams = new URLSearchParams(window.location.search);
