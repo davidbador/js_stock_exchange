@@ -18,7 +18,7 @@ class SearchResult {
         resultChild.appendChild(resultChildLink);
         this.button.addEventListener('click', () => {
             console.log(stock.profile);
-            const compareCompanies = new ComparisonCompanies(comparisonHolder, stock);
+            const compareCompanies = new ComparisonCompanies(store.comparisonHolder, stock);
             compareCompanies.compareOptions()
         });
         this.highlight(queryInput.value, resultChildName);
@@ -64,13 +64,13 @@ class SearchResult {
         this.button.innerHTML = 'Compare';
         resultChild.appendChild(this.button);
         this.button.addEventListener('click', function () {
-            if (count === 1) {
-                compareAmount.innerHTML = `Compare ${count} Company`;
-                compareAmount.className = 'compareAmountLink';
-                compareAmount.setAttribute('href', `company.html?symbol=${usedSymbols}`);
-            } else if (count > 1) {
-                compareAmount.setAttribute('href', `compare.html?symbols=${usedSymbols}`);
-                compareAmount.innerHTML = `Compare ${count} Companies`;
+            if (store.count === 1) {
+                store.compareAmount.innerHTML = `Compare ${store.count} Company`;
+                store.compareAmount.className = 'compareAmountLink';
+                store.compareAmount.setAttribute('href', `company.html?symbol=${store.usedSymbols}`);
+            } else if (store.count > 1) {
+                store.compareAmount.setAttribute('href', `compare.html?symbols=${store.usedSymbols}`);
+                store.compareAmount.innerHTML = `Compare ${store.count} Companies`;
             }
         });
     }

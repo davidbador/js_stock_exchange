@@ -1,47 +1,41 @@
 // Global Variables
-let marqueeParent = document.getElementById('marquee');
-let searchBar = document.getElementById('searchBar');
-let queryInput = document.getElementById('queryInput');
-let searchButton = document.getElementById('searchButton');
-let resultParent = document.getElementById('searchResults');
-let comparisonHolder = document.getElementById('comparisonHolder');
-let loader = document.getElementById('loader');
-let compareAmount = document.getElementById('compareAmount');
-let count = 0;
-let usedSymbols = [];
-let re = /[a-zA-Z0-9]/;
-
-// Class Modifiers
-loader.classList.add('hide');
+let store = {};
 
 // Asynchronous function to load the Marquee on the window being loaded
 (async function () {
-    const marquee = new Marquee(marqueeParent);
-    marquee.load();
+    store.marqueeParent = document.getElementById('marquee');
+    store.marquee = new Marquee(store.marqueeParent);
+    store.marquee.load();
 })()
 
 // Function to show Loader before results are displayed
-showLoader = () => {
-    loader.classList.replace('hide', 'show');
+store.showLoader = () => {
+    store.loader = document.getElementById('loader');
+    store.loader.classList.replace('hide', 'show');
 }
 
 // Function to call the Loader and Stock Search Results
-inputSearch = () => {
-    showLoader();
-    const form = new SearchForm(searchBar);
-    form.onSearch(queryInput.value);
+store.inputSearch = () => {
+    store.showLoader();
+    store.searchBar = document.getElementById('searchBar');
+    store.queryInput = document.getElementById('queryInput');
+    store.form = new SearchForm(store.searchBar);
+    store.form.onSearch(store.queryInput.value);
 }
 
 // Function to call the Stock Search Results for autocomplete searches
-inputAutocomplete = () => {
-    if (re.test(queryInput.value) === true) {
-        const form = new SearchForm(searchBar);
-        form.onSearch(queryInput.value);
+store.inputAutocomplete = () => {
+    store.queryInput = document.getElementById('queryInput');
+    store.re = /[a-zA-Z0-9]/;
+    if (store.re.test(store.queryInput.value) === true) {
+        store.searchBar = document.getElementById('searchBar');
+        store.form = new SearchForm(store.searchBar);
+        store.form.onSearch(store.queryInput.value);
     }
 }
 
 // Debounce function to time the completion of the autocompletion function
-debounce = (func, wait, immediate) => {
+store.debounce = (func, wait, immediate) => {
     let timeout;
     return function () {
         let context = this, args = arguments;
@@ -61,40 +55,53 @@ debounce = (func, wait, immediate) => {
 };
 
 // Function to refresh Search Results with the New Input
-createCompanyNamesRefresh = () => {
-    let child = resultParent.lastElementChild;
-    while (child) {
-        resultParent.removeChild(child);
-        child = resultParent.lastElementChild;
+store.createCompanyNamesRefresh = () => {
+    store.resultParent = document.getElementById('searchResults');
+    store.child = store.resultParent.lastElementChild;
+    while (store.child) {
+        store.resultParent.removeChild(store.child);
+        store.child = store.resultParent.lastElementChild;
     }
 }
 
 // Function to refresh the window with the search results in the URL
-queryRefresh = () => {
-    let urlParams = new URLSearchParams(window.location.search);
-    let querySearch = urlParams.get('query');
-    if (querySearch != '') {
-        queryInput.value = querySearch;
-        const form = new SearchForm(searchBar);
-        form.onSearch(queryInput.value);
+store.queryRefresh = () => {
+    store.urlParams = new URLSearchParams(window.location.search);
+    store.querySearch = store.urlParams.get('query');
+    if (store.querySearch != '') {
+        store.resultParent = document.getElementById('searchResults');
+        store.queryInput = document.getElementById('queryInput');
+        store.queryInput.value = store.querySearch;
+        store.searchBar = document.getElementById('searchBar');
+        store.form = new SearchForm(store.searchBar);
+        store.form.onSearch(store.queryInput.value);
     }
 }
 
 // Function to add the input value in the URL in real time
-addQueryString = () => {
+store.addQueryString = () => {
     if (history.pushState) {
-        let string = queryInput.value;
-        let newURL = window.location.protocol + '?query=' + string;
-        window.history.pushState({ path: newURL }, '', newURL);
+        store.string = store.queryInput.value;
+        store.newURL = window.location.protocol + '?query=' + store.string;
+        window.history.pushState({ path: store.newURL }, '', store.newURL);
     }
 }
 
-// Event Listeners
-window.addEventListener('load', queryRefresh);
-queryInput.addEventListener('keyup', debounce(() => {
-    inputAutocomplete()
-}, 400));
-queryInput.addEventListener('keyup', createCompanyNamesRefresh);
-queryInput.addEventListener('keyup', addQueryString);
-searchButton.addEventListener('click', inputSearch);
-searchButton.addEventListener('click', createCompanyNamesRefresh);
+store.eventFunctions = () => {
+    store.count = 0;
+    store.usedSymbols = [];
+    store.comparisonHolder = document.getElementById('comparisonHolder');
+    store.compareAmount = document.getElementById('compareAmount');
+    window.addEventListener('load', store.queryRefresh);
+    store.queryInput = document.getElementById('queryInput');
+    store.searchButton = document.getElementById('searchButton');
+    store.queryInput.addEventListener('keyup', store.debounce(() => {
+        store.inputAutocomplete();
+    }, 400));
+    store.queryInput.addEventListener('keyup', store.createCompanyNamesRefresh);
+    store.queryInput.addEventListener('keyup', store.addQueryString);
+    store.searchButton.addEventListener('click', store.inputSearch);
+    store.searchButton.addEventListener('click', store.createCompanyNamesRefresh);
+}
+
+store.eventFunctions();

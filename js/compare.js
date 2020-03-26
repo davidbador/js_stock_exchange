@@ -1,5 +1,7 @@
+let store = {};
+
 (async function () {
-    let container = document.getElementById('container');
-    const stockInfo = new StockComparisonInformation(container);
-    stockInfo.loadData();
+    store.container = document.getElementById('container');
+    store.stockInfo = new StockComparisonInformation(store.container);
+    store.stockInfo.loadData();
 })()

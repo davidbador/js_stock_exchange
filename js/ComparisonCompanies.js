@@ -6,18 +6,18 @@ class ComparisonCompanies {
         this.deleteIt = document.createElement('span');
     }
     increment = () => {
-        count++;
-        usedSymbols.push(this.stock.symbol);
+        store.count++;
+        store.usedSymbols.push(this.stock.symbol);
     }
     createComparisonSelection = (stock) => {
-        if (!usedSymbols.includes(stock.symbol) && usedSymbols.length < 3) {
+        if (!store.usedSymbols.includes(stock.symbol) && store.usedSymbols.length < 3) {
             this.compare.classList.add('btn');
             this.compare.classList.add('btn-info');
             this.compare.id = 'comparisonCompany';
             this.compare.innerHTML = `<span id='comparisonSymbol'>${stock.symbol}</span> `;
             this.deleteIt.innerHTML = 'x';
             this.deleteIt.className = 'deleteComparison';
-            comparisonHolder.appendChild(this.compare);
+            store.comparisonHolder.appendChild(this.compare);
             this.compare.appendChild(this.deleteIt);
             this.increment();
         }
@@ -34,21 +34,21 @@ class ComparisonCompanies {
             });
         }
         this.deleteIt.addEventListener('click', function () {
-            count--;
-            const index = usedSymbols.indexOf(stock.symbol);
+            store.count--;
+            const index = store.usedSymbols.indexOf(stock.symbol);
 
             //change it for a switch statement
             if (index > -1) {
-                usedSymbols.splice(index, 1);
+                store.usedSymbols.splice(index, 1);
             }
-            compareAmount.innerHTML = `Compare ${count} Companies`;
-            if (count === 1) {
-                compareAmount.innerHTML = `Compare ${count} Company`;
-                compareAmount.setAttribute('href', `company.html?symbol=${usedSymbols}`);
-            } else if (count === 0) {
-                compareAmount.innerHTML = 'Compare';
-                compareAmount.className = 'compareAmount';
-                compareAmount.removeAttribute('href');
+            store.compareAmount.innerHTML = `Compare ${store.count} Companies`;
+            if (store.count === 1) {
+                store.compareAmount.innerHTML = `Compare ${store.count} Company`;
+                store.compareAmount.setAttribute('href', `company.html?symbol=${store.usedSymbols}`);
+            } else if (store.count === 0) {
+                store.compareAmount.innerHTML = 'Compare';
+                store.compareAmount.className = 'compareAmount';
+                store.compareAmount.removeAttribute('href');
             }
         });
     }

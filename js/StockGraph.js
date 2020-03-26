@@ -8,8 +8,8 @@ class StockGraph {
         let symbol = urlParams.get('symbol');
         let history = await fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?serietype=line`);
         let data = await history.json();
-        stockInformation.appendChild(this.div);
-        this.div.appendChild(stockGraphChild);
+        store.stockInformation.appendChild(this.div);
+        this.div.appendChild(store.stockGraphChild);
         let dataDates = [];
         let dataCloses = [];
         let chosenDataDates = [];
@@ -19,8 +19,8 @@ class StockGraph {
             dataCloses.push(object.close);
         })
         this.pushData(dataDates, dataCloses, chosenDataDates, chosenDataCloses);
-        var ctx = stockGraphChild.getContext('2d');
-        var chart = new Chart(ctx, {
+        var ctx = store.stockGraphChild.getContext('2d');
+        new Chart(ctx, {
             type: 'line',
             data: {
                 labels: chosenDataDates,

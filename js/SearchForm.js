@@ -44,7 +44,7 @@ class SearchForm {
             }
             let fuse = [].concat.apply([], combineInformation);
             fuse.map((option) => {
-                new SearchResult(resultParent).renderResults(option);
+                new SearchResult(store.resultParent).renderResults(option);
             })
             loader.classList.replace('show', 'hide');
         }

@@ -77,7 +77,7 @@ class StockComparisonInformation {
         })
         this.pushData(dataDates, dataCloses, chosenDataDates, chosenDataCloses);
         var ctx = stockSectionGraphChild.getContext('2d');
-        var chart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'line',
             data: {
                 labels: chosenDataDates,
