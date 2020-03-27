@@ -2,10 +2,10 @@
 let store = {};
 
 // Asynchronous function to load the Marquee on the window being loaded
-(async function () {
+store.runMarquee = () => {
     store.marqueeParent = document.getElementById('marquee');
     store.marquee = new Marquee(store.marqueeParent);
-})()
+}
 
 // Function to show Loader before results are displayed
 store.showLoader = () => {
@@ -88,6 +88,7 @@ store.eventFunctions = () => {
     store.usedSymbols = [];
     store.comparisonHolder = document.getElementById('comparisonHolder');
     store.compareAmount = document.getElementById('compareAmount');
+    window.addEventListener('load', store.runMarquee);
     window.addEventListener('load', store.queryRefresh);
     store.queryInput = document.getElementById('queryInput');
     store.searchButton = document.getElementById('searchButton');
