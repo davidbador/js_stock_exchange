@@ -5,27 +5,30 @@ class SearchForm {
         this.onSearch(store.queryInput.value);
     }
     onSearch = async (inputValue) => {
-        if (queryInput.value === '') {
+        if (store.queryInput.value === '') {
             return null;
         } else {
             let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${inputValue}&limit=10&exchange=NASDAQ`);
             let data = await ticker.json();
             let threeProfiles = [];
-            for (let i = 0; i < data.length; i += 3) {
-                if (i < data.length - 1) {
-                    if (data.length === 1) {
+            if (data.length === 0) {
+                store.noResult = document.createElement('div');
+                store.noResult.innerText = `No search results found for "${store.queryInput.value}"`;
+                store.resultParent.appendChild(store.noResult);
+            } else {
+                for (let i = 0; i < data.length; i += 3) {
+                    if (i < data.length - 1) {
+                        if (data.length === 2) {
+                            let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol},${data[i + 1].symbol}`);
+                            threeProfiles.push(info);
+                        } else {
+                            let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol},${data[i + 1].symbol},${data[i + 2].symbol}`);
+                            threeProfiles.push(info);
+                        }
+                    } else {
                         let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol}`);
                         threeProfiles.push(info);
-                    } else if (data.length === 2) {
-                        let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol},${data[i + 1].symbol}`);
-                        threeProfiles.push(info);
-                    } else {
-                        let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol},${data[i + 1].symbol},${data[i + 2].symbol}`);
-                        threeProfiles.push(info);
                     }
-                } else {
-                    let info = (`https://financialmodelingprep.com/api/v3/company/profile/${data[i].symbol}`);
-                    threeProfiles.push(info);
                 }
             }
             let profileInformation = await Promise.all(

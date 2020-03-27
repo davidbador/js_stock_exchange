@@ -17,6 +17,7 @@ store.showLoader = () => {
 store.inputSearch = () => {
     store.showLoader();
     store.searchBar = document.getElementById('searchBar');
+    store.resultParent = document.getElementById('searchResults');
     store.queryInput = document.getElementById('queryInput');
     store.form = new SearchForm(store.searchBar);
 }
@@ -24,6 +25,7 @@ store.inputSearch = () => {
 // Function to call the Stock Search Results for autocomplete searches
 store.inputAutocomplete = () => {
     store.queryInput = document.getElementById('queryInput');
+    store.resultParent = document.getElementById('searchResults');
     store.re = /[a-zA-Z0-9]/;
     if (store.re.test(store.queryInput.value) === true) {
         store.searchBar = document.getElementById('searchBar');
