@@ -19,6 +19,8 @@ class StockGraph {
             dataDates.push(object.date);
             dataCloses.push(object.close);
         })
+        console.log(dataDates);
+        console.log(dataCloses);
         this.pushData(dataDates, dataCloses, chosenDataDates, chosenDataCloses);
         var ctx = store.stockGraphChild.getContext('2d');
         new Chart(ctx, {
@@ -44,6 +46,8 @@ class StockGraph {
         for (let i = 0; i < dataB.length; i = i + divider) {
             newDataB.push(dataB[i]);
         }
+        newDataA.push(dataA[dataA.length - 1]);
+        newDataB.push(dataB[dataB.length - 1]);
     }
     loadChart = () => {
         this.createStockPriceHistory()
