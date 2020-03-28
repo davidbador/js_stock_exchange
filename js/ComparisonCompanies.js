@@ -1,3 +1,4 @@
+// Comparison Companies Class to run functionality for the main page's comparison area
 class ComparisonCompanies {
     constructor(div, stock) {
         this.div = div;

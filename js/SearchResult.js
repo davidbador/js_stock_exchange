@@ -10,8 +10,6 @@ class SearchResult {
         let resultChildName = document.createElement('span');
         this.div.appendChild(resultChild);
         resultChild.classList.add('resultChildStyle');
-        resultChild.id = 'resultChild';
-        resultChildName.id = 'resultChildName';
         resultChildLink.setAttribute('href', `company.html?symbol=${stock.symbol}`);
         resultChildName.innerHTML = `${stock.profile.companyName}`;
         resultChildLink.appendChild(resultChildName);
@@ -27,14 +25,12 @@ class SearchResult {
     createImage = (resultChild, stock) => {
         let stockImage = document.createElement('img');
         stockImage.className = 'imageSize';
-        stockImage.id = 'stockImage';
         stockImage.src = `${stock.profile.image}`;
         resultChild.prepend(stockImage);
         this.createSymbol(resultChild, stock);
     }
     createSymbol = (resultChild, stock) => {
         let stockSymbol = document.createElement('span');
-        stockSymbol.id = 'stockSymbol';
         stockSymbol.innerHTML = `(${stock.symbol})`;
         stockSymbol.classList.add('stockSymbolStyle');
         resultChild.appendChild(stockSymbol);
@@ -44,7 +40,6 @@ class SearchResult {
     createMovement = (resultChild, stock) => {
         let stockPriceMovementChild = document.createElement('span');
         stockPriceMovementChild.classList.add('stockPriceStyle');
-        stockPriceMovementChild.id = 'stockPriceMovementChild';
         stockPriceMovementChild.innerHTML = `${stock.profile.changesPercentage}`;
         resultChild.appendChild(stockPriceMovementChild);
         this.changeSign(stockPriceMovementChild);

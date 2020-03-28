@@ -1,4 +1,4 @@
-// Global Variables
+// Global Namespace Variable
 let store = {};
 
 // Asynchronous function to load the Marquee on the window being loaded
@@ -85,6 +85,7 @@ store.addQueryString = () => {
     }
 }
 
+// Event Listeners compiled into one function
 store.eventFunctions = () => {
     store.count = 0;
     store.usedSymbols = [];
@@ -103,4 +104,5 @@ store.eventFunctions = () => {
     store.searchButton.addEventListener('click', store.createCompanyNamesRefresh);
 }
 
+// Function called to start running the program
 store.eventFunctions();

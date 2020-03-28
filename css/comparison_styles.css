@@ -1,5 +1,6 @@
+/* Stock Comparison Title Styling */
 span > a {
-  font-size: 24px;
+  font-size: 22px;
   margin-left: 6%;
   vertical-align: middle;
 }
@@ -15,7 +16,7 @@ span > img {
 }
 
 .stockSectionTitleIndustry {
-  font-size: 18px;
+  font-size: 16px;
   color: gainsboro;
   vertical-align: middle;
 }
@@ -24,6 +25,7 @@ span > img {
   margin-top: 5%;
 }
 
+/* Stock Comparison Price Styling */
 .stockSectionPrice {
   font-weight: 400;
   font-size: 20px;
@@ -41,6 +43,7 @@ span > img {
   color: lightgreen;
 }
 
+/* Stock Comparison Description Styling */
 .stockSectionDescription {
   margin-top: 5%;
   margin-bottom: 5%;
@@ -48,6 +51,7 @@ span > img {
   font-size: 14px;
 }
 
+/* Overall Compare Stocks Styling */
 .title {
   font-size: 72px;
   font-weight: 500;

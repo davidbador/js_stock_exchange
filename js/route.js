@@ -1,4 +1,4 @@
-// Global Variables
+// Global Namespace variable
 let store = {};
 
 // Function to show Loader before results are displayed

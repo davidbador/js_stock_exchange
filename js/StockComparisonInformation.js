@@ -1,3 +1,4 @@
+// Stock Comparison Information Class to display results for stocks being compared
 class StockComparisonInformation {
     constructor(div) {
         this.div = div;
@@ -7,21 +8,25 @@ class StockComparisonInformation {
         let urlParams = new URLSearchParams(window.location.search);
         let symbols = urlParams.get('symbols');
         let comparisonSymbols = symbols.split(',');
-        comparisonSymbols.forEach(async (option) => {
-            let section = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option}`);
-            let data = await section.json();
-            let stockSection = document.createElement('span');
-            stockSection.classList.add('card');
-            stockSection.classList.add('shadow');
-            stockSection.classList.add('p-3');
-            stockSection.classList.add('mb-5');
-            stockSection.classList.add('bg-white');
-            stockSection.classList.add('rounded');
-            this.createComparisonCardsHeaders(data, stockSection);
-            this.createComparisonCardsPrice(data, stockSection);
-            this.createComparisonCardsDescription(data, stockSection);
-            this.createComparisonCardsGraph(option, stockSection);
-        })
+        if (comparisonSymbols.length < 2) {
+            this.div.innerHTML = "You must choose more than one company to compare!";
+        } else if (comparisonSymbols.length >= 2) {
+            comparisonSymbols.forEach(async (option) => {
+                let section = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option}`);
+                let data = await section.json();
+                let stockSection = document.createElement('span');
+                stockSection.classList.add('card');
+                stockSection.classList.add('shadow');
+                stockSection.classList.add('p-3');
+                stockSection.classList.add('mb-5');
+                stockSection.classList.add('bg-white');
+                stockSection.classList.add('rounded');
+                this.createComparisonCardsHeaders(data, stockSection);
+                this.createComparisonCardsPrice(data, stockSection);
+                this.createComparisonCardsDescription(data, stockSection);
+                this.createComparisonCardsGraph(option, stockSection);
+            })
+        }
     }
     createComparisonCardsHeaders = (stock, stockSection) => {
         let stockSectionTitleParent = document.createElement('div');
