@@ -25,10 +25,6 @@ class ComparisonCompanies {
         }
         let deleteChild = document.getElementsByClassName('deleteComparison');
 
-        // for (let deleteButton of deleteChild) {
-        //     console.log(this.div.parentNode);
-        //     deleteButton.addEventListener('click', this.div.parentNode.remove)
-        // }
         for (let i = 0; i < deleteChild.length; i++) {
             let deleteButton = deleteChild[i];
             deleteButton.addEventListener('click', function () {
