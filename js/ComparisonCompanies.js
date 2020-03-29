@@ -35,18 +35,19 @@ class ComparisonCompanies {
             store.count--;
             const index = store.usedSymbols.indexOf(stock.symbol);
 
-            //change it for a switch statement
             if (index > -1) {
                 store.usedSymbols.splice(index, 1);
             }
             store.compareAmount.innerHTML = `Compare ${store.count} Companies`;
-            if (store.count === 1) {
-                store.compareAmount.innerHTML = `Compare ${store.count} Company`;
-                store.compareAmount.setAttribute('href', `company.html?symbol=${store.usedSymbols}`);
-            } else if (store.count === 0) {
-                store.compareAmount.innerHTML = 'Compare';
-                store.compareAmount.className = 'compareAmount';
-                store.compareAmount.removeAttribute('href');
+
+            switch (store.count) {
+                case 0:
+                    store.compareAmount.innerHTML = 'Compare';
+                    store.compareAmount.className = 'compareAmount';
+                    store.compareAmount.removeAttribute('href');
+                case 1:
+                    store.compareAmount.innerHTML = `Compare ${store.count} Company`;
+                    store.compareAmount.setAttribute('href', `company.html?symbol=${store.usedSymbols}`);
             }
         });
     }
