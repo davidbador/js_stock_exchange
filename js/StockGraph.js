@@ -19,8 +19,6 @@ class StockGraph {
             dataDates.push(object.date);
             dataCloses.push(object.close);
         })
-        console.log(dataDates);
-        console.log(dataCloses);
         this.pushData(dataDates, dataCloses, chosenDataDates, chosenDataCloses);
         var ctx = store.stockGraphChild.getContext('2d');
         new Chart(ctx, {
