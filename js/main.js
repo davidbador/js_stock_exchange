@@ -19,7 +19,7 @@ store.inputSearch = () => {
     store.searchBar = document.getElementById('searchBar');
     store.resultParent = document.getElementById('searchResults');
     store.queryInput = document.getElementById('queryInput');
-    store.form = new SearchForm(store.searchBar);
+    store.form = new SearchFormServer(store.searchBar);
 }
 
 // Function to call the Stock Search Results for autocomplete searches
@@ -29,7 +29,7 @@ store.inputAutocomplete = () => {
     store.re = /[a-zA-Z0-9]/;
     if (store.re.test(store.queryInput.value) === true) {
         store.searchBar = document.getElementById('searchBar');
-        store.form = new SearchForm(store.searchBar);
+        store.form = new SearchFormServer(store.searchBar);
     }
 }
 
@@ -72,7 +72,7 @@ store.queryRefresh = () => {
         store.queryInput = document.getElementById('queryInput');
         store.queryInput.value = store.querySearch;
         store.searchBar = document.getElementById('searchBar');
-        store.form = new SearchForm(store.searchBar);
+        store.form = new SearchFormServer(store.searchBar);
     }
 }
 
