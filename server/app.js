@@ -5,6 +5,24 @@ const cors = require('cors');
 
 app.use(cors());
 
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    const dbo = db.db("mydb");
+    app.get('/search', function (req, res) {
+        searchWithQuery(req.query.query).then((companyProfiles) => {
+            res.json(companyProfiles);
+        })
+        const userInput = req.query.query;
+        const object = { userInput, createdDate: Date.now() };
+        dbo.collection("search").insertOne(object, (err) => {
+            if (err) throw err;
+        })
+    })
+});
+
 getStockData = async (inputValue) => {
     let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${inputValue}&limit=10&exchange=NASDAQ`);
     let data = await ticker.json();
@@ -25,12 +43,6 @@ searchWithQuery = async (inputValue) => {
     let companyProfiles = await Promise.all(getCompanyProfiles)
     return companyProfiles;
 }
-
-app.get('/search', function (req, res) {
-    searchWithQuery(req.query.query).then((companyProfiles) => {
-        res.json(companyProfiles);
-    })
-})
 
 let PORT = 5500;
 
