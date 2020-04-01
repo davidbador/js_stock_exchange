@@ -21,6 +21,12 @@ MongoClient.connect(url, (err, db) => {
             })
         })
     })
+    app.get('/search-history', function (req, res) {
+        let collection = dbo.collection("search");
+        collection.find({}).sort({createdDate: -1}).toArray(function (err, search) {
+            res.json(search)
+        });
+    });
 });
 
 getStockData = async (inputValue) => {

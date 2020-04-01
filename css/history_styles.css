@@ -1,0 +1,17 @@
+div > div {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+div > div:not(:last-child) {
+    border-bottom: 1px solid gainsboro;
+}
+
+div > div > span {
+    font-size: 24px;
+}
+
+.dataQuery {
+    margin-right: 5%;
+    font-size: 24px;
+}
