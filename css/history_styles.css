@@ -1,6 +1,7 @@
 div > div {
     text-align: center;
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 div > div:not(:last-child) {
@@ -14,4 +15,9 @@ div > div > span {
 .dataQuery {
     margin-right: 5%;
     font-size: 24px;
+}
+
+button {
+    position: absolute;
+    right: 10%;
 }

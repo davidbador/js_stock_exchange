@@ -1,5 +1,5 @@
 class SearchFormHistory {
-    constructor (div) {
+    constructor(div) {
         this.div = div;
         this.onLoad();
     }
@@ -17,8 +17,25 @@ class SearchFormHistory {
             dataDate.innerHTML = time.toString();
             dataChild.appendChild(dataInput);
             dataChild.appendChild(dataDate);
+            this.createButton(dataChild, option._id);
             this.div.appendChild(dataChild);
         })
-
+    }
+    createButton = (dataChild, idNumber) => {
+        let deleteButton = document.createElement('button');
+        deleteButton.setAttribute('type', 'button');
+        deleteButton.classList.add('btn');
+        deleteButton.classList.add('btn-danger');
+        deleteButton.id = idNumber;
+        deleteButton.innerHTML = 'DELETE';
+        dataChild.appendChild(deleteButton);
+        deleteButton.addEventListener('click', () => {
+            fetch(`http://localhost:5500/search-history/${deleteButton.id}`, { method: 'DELETE' })
+                .then(function (response) {
+                    if (response.ok) {
+                        return
+                    }
+                })
+        })
     }
 }

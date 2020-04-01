@@ -7,6 +7,7 @@ app.use(cors());
 
 let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://localhost:27017/";
+let mongo = require('mongodb');
 
 MongoClient.connect(url, (err, db) => {
     if (err) throw err;
@@ -31,6 +32,16 @@ MongoClient.connect(url, (err, db) => {
         collection.find({}).sort({ createdDate: -1 }).toArray(function (err, search) {
             res.json(search)
         });
+    });
+})
+
+MongoClient.connect(url, (err, db) => {
+    app.delete('/search-history/:id', function (req, res) {
+        let id = req.params.id;
+        let collection = db.db("mydb").collection("search");
+        collection.deleteOne({ _id: new mongo.ObjectId(id) }, (err) => {
+            if (err) throw err;
+        })
     });
 })
 
