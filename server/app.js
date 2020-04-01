@@ -5,8 +5,8 @@ const cors = require('cors');
 
 app.use(cors());
 
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
 
 MongoClient.connect(url, (err, db) => {
     if (err) throw err;
