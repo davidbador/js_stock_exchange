@@ -21,13 +21,18 @@ MongoClient.connect(url, (err, db) => {
             })
         })
     })
+});
+
+MongoClient.connect(url, (err, db) => {
+    if (err) throw err;
+    const dbo = db.db("mydb")
     app.get('/search-history', function (req, res) {
         let collection = dbo.collection("search");
-        collection.find({}).sort({createdDate: -1}).toArray(function (err, search) {
+        collection.find({}).sort({ createdDate: -1 }).toArray(function (err, search) {
             res.json(search)
         });
     });
-});
+})
 
 getStockData = async (inputValue) => {
     let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${inputValue}&limit=10&exchange=NASDAQ`);
