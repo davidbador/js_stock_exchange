@@ -14,11 +14,11 @@ MongoClient.connect(url, (err, db) => {
     app.get('/search', function (req, res) {
         searchWithQuery(req.query.query).then((companyProfiles) => {
             res.json(companyProfiles);
-        })
-        const userInput = req.query.query;
-        const object = { userInput, createdDate: Date.now() };
-        dbo.collection("search").insertOne(object, (err) => {
-            if (err) throw err;
+            const userInput = req.query.query;
+            const object = { userInput, companyProfiles, createdDate: Date.now() };
+            dbo.collection("search").insertOne(object, (err) => {
+                if (err) throw err;
+            })
         })
     })
 });
