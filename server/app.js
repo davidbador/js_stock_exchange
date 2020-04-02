@@ -9,40 +9,37 @@ let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://localhost:27017/";
 let mongo = require('mongodb');
 
+let dbo;
+
 MongoClient.connect(url, (err, db) => {
     if (err) throw err;
-    const dbo = db.db("mydb");
-    app.get('/search', function (req, res) {
-        searchWithQuery(req.query.query).then((companyProfiles) => {
-            res.json(companyProfiles);
-            const userInput = req.query.query;
-            const object = { userInput, companyProfiles, createdDate: Date.now() };
-            dbo.collection("search").insertOne(object, (err) => {
-                if (err) throw err;
-            })
-        })
-    })
+    dbo = db.db("mydb");
 });
 
-MongoClient.connect(url, (err, db) => {
-    if (err) throw err;
-    const dbo = db.db("mydb")
-    app.get('/search-history', function (req, res) {
-        let collection = dbo.collection("search");
-        collection.find({}).sort({ createdDate: -1 }).toArray(function (err, search) {
-            res.json(search)
-        });
-    });
-})
-
-MongoClient.connect(url, (err, db) => {
-    app.delete('/search-history/:id', function (req, res) {
-        let id = req.params.id;
-        let collection = db.db("mydb").collection("search");
-        collection.deleteOne({ _id: new mongo.ObjectId(id) }, (err) => {
+app.get('/search', function (req, res) {
+    searchWithQuery(req.query.query).then((companyProfiles) => {
+        res.json(companyProfiles);
+        const userInput = req.query.query;
+        const object = { userInput, companyProfiles, createdDate: Date.now() };
+        dbo.collection("search").insertOne(object, (err) => {
             if (err) throw err;
         })
+    })
+})
+
+app.get('/search-history', function (req, res) {
+    let collection = dbo.collection("search");
+    collection.find({}).sort({ createdDate: -1 }).toArray(function (err, search) {
+        res.json(search)
     });
+});
+
+app.delete('/search-history/:id', function (req, res) {
+    let id = req.params.id;
+    let collection = dbo.collection("search");
+    collection.deleteOne({ _id: new mongo.ObjectId(id) }, (err) => {
+        if (err) throw err;
+    })
 })
 
 getStockData = async (inputValue) => {
