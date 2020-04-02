@@ -8,29 +8,28 @@ app.use(cors());
 let MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://localhost:27017/";
 
-MongoClient.connect(url, (err, db) => {
-    if (err) throw err;
-    const dbo = db.db("mydb");
-    app.get('/search', function (req, res) {
-        searchWithQuery(req.query.query).then((companyProfiles) => {
-            res.json(companyProfiles);
-            const userInput = req.query.query;
-            const object = { userInput, companyProfiles, createdDate: Date.now() };
-            dbo.collection("search").insertOne(object, (err) => {
-                if (err) throw err;
-            })
-        })
-    })
-});
+let dbo;
 
 MongoClient.connect(url, (err, db) => {
     if (err) throw err;
-    const dbo = db.db("mydb");
-    app.get('/search-history', function (req, res) {
-        let collection = dbo.collection("search");
-        collection.find({}).sort({ createdDate: -1 }).toArray(function (err, search) {
-            res.json(search)
-        });
+    dbo = db.db("mydb");
+});
+
+app.get('/search', function (req, res) {
+    searchWithQuery(req.query.query).then((companyProfiles) => {
+        res.json(companyProfiles);
+        const userInput = req.query.query;
+        const object = { userInput, companyProfiles, createdDate: Date.now() };
+        dbo.collection("search").insertOne(object, (err) => {
+            if (err) throw err;
+        })
+    })
+})
+
+app.get('/search-history', function (req, res) {
+    let collection = dbo.collection("search");
+    collection.find({}).sort({ createdDate: -1 }).toArray(function (err, search) {
+        res.json(search)
     });
 });
 
