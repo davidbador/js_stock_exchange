@@ -36,6 +36,15 @@ class SearchFormHistory {
                         return
                     }
                 })
+            this.deleteHistory();
+            this.onLoad();
         })
+    }
+    deleteHistory = () => {
+        let child = this.div.lastElementChild;
+        while (child) {
+            this.div.removeChild(child);
+            child = this.div.lastElementChild;
+        }
     }
 }
