@@ -43,13 +43,13 @@ app.delete('/search-history/:id', function (req, res) {
 })
 
 getStockData = async (inputValue) => {
-    let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${inputValue}&limit=10&exchange=NASDAQ`);
+    let ticker = await fetch(`https://financialmodelingprep.com/api/v3/search?query=${inputValue}&limit=10&exchange=NASDAQ&apikey=0a3fb7f3d8ba2c1756f04632597d0309`);
     let data = await ticker.json();
     return data;
 }
 
 getStockSymbol = async (symbol) => {
-    let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${symbol}`);
+    let info = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${symbol}?apikey=0a3fb7f3d8ba2c1756f04632597d0309`);
     let data = await info.json();
     return data;
 }
