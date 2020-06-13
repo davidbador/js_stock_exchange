@@ -12,7 +12,7 @@ class StockComparisonInformation {
             this.div.innerHTML = "You must choose more than one company to compare!";
         } else if (comparisonSymbols.length >= 2) {
             comparisonSymbols.forEach(async (option) => {
-                let section = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option}`);
+                let section = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${option}?apikey=0a3fb7f3d8ba2c1756f04632597d0309`);
                 let data = await section.json();
                 let stockSection = document.createElement('span');
                 stockSection.classList.add('card');
@@ -71,7 +71,7 @@ class StockComparisonInformation {
     createComparisonCardsGraph = async (option, stockSection) => {
         let stockSectionGraphParent = document.createElement('div');
         let stockSectionGraphChild = document.createElement('canvas');
-        let history = await fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${option}?serietype=line`);
+        let history = await fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${option}?serietype=line&apikey=0a3fb7f3d8ba2c1756f04632597d0309`);
         let data = await history.json();
         let dataDates = [];
         let dataCloses = [];

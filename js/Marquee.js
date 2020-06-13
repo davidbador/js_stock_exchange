@@ -5,7 +5,7 @@ class Marquee {
         this.load();
     }
     async appendMarqueeElements() {
-        let info = await fetch(`https://financialmodelingprep.com/api/v3/company/stock/list`);
+        let info = await fetch(`https://financialmodelingprep.com/api/v3/stock/list?apikey=0a3fb7f3d8ba2c1756f04632597d0309`);
         let data = await info.json();
         let marqueeWrapper = document.createElement('div');
         let marqueeMovement = document.createElement('div');
@@ -13,7 +13,7 @@ class Marquee {
         marqueeMovement.className = 'marqueeMovement';
         this.div.appendChild(marqueeWrapper);
         marqueeWrapper.appendChild(marqueeMovement);
-        data.symbolsList.forEach((option) => {
+        data.forEach((option) => {
             this.appendStockFeatures(option, marqueeMovement);
         })
     }
