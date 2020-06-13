@@ -7,7 +7,7 @@ class StockInformation {
     createStockInformation = async () => {
         let urlParams = new URLSearchParams(window.location.search);
         let symbol = urlParams.get('symbol');
-        let title = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${symbol}`);
+        let title = await fetch(`https://financialmodelingprep.com/api/v3/company/profile/${symbol}?apikey=0a3fb7f3d8ba2c1756f04632597d0309`);
         let data = await title.json();
         this.div.appendChild(store.titleParent);
         this.div.appendChild(store.stockPriceParent);

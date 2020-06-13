@@ -7,7 +7,7 @@ class StockGraph {
     createStockPriceHistory = async () => {
         let urlParams = new URLSearchParams(window.location.search);
         let symbol = urlParams.get('symbol');
-        let history = await fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?serietype=line`);
+        let history = await fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?serietype=line&apikey=0a3fb7f3d8ba2c1756f04632597d0309`);
         let data = await history.json();
         store.stockInformation.appendChild(this.div);
         this.div.appendChild(store.stockGraphChild);
